@@ -1,7 +1,4 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
-import 'package:sports_app/pages/Profile.dart';
 import 'package:sports_app/services/EventsService.dart';
 import 'package:sports_app/entities/Event.dart';
 
@@ -34,11 +31,11 @@ class _HomeState extends State<Home> {
                   Row(
                     children: <Widget>[
                       Container(
-                        padding: EdgeInsets.all(50.0),
+                        padding: EdgeInsets.all(20.0),
                         child: Text(events[index].description),
                       ),
                       Container(
-                        padding: EdgeInsets.all(50.0),
+                        padding: EdgeInsets.all(10.0),
                         child: Text(events[index].location),
                       )
                     ],

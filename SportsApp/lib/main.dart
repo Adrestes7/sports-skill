@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:sports_app/appView/AppView.dart';
 import 'package:sports_app/pages/CreateEvent.dart';
