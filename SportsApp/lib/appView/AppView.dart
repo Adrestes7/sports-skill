@@ -47,6 +47,11 @@ class _AppViewState extends State<AppView> {
           });
         },
       ),
+      floatingActionButton: _currentIndex !=0?Container(): FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          Navigator.pushNamed(context, '/event');
+        },)
     );
   }
 }
