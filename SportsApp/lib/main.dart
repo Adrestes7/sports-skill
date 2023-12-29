@@ -10,7 +10,7 @@ import 'package:sports_app/pages/Splash.dart';
 import 'package:sports_app/pages/CreatedEventInfo.dart';
 void main() {
   runApp(MaterialApp(
-    initialRoute: '/home',
+    initialRoute: '/splash',
     routes: {
       '/': (context) => AppView(),
       '/splash': (context) => Splash(),
@@ -18,7 +18,7 @@ void main() {
       '/profile': (context) => ProfilePage(),
       '/event': (context) => CreateEvent(),
       '/category': (context) => SelectCategory(),
-      '/eventInfo': (context) => EventInfo(),
+      '/eventinfo': (context) => EventInfo(),
       '/createdeventinfo': (context) => CreatedEventInfo(eventId: '',),
 
     },
