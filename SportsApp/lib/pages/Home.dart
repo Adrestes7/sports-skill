@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sports_app/pages/CreatedEventInfo.dart';
 import 'package:sports_app/services/EventsService.dart';
 import 'package:sports_app/entities/Event.dart';
 
@@ -24,7 +25,15 @@ class _HomeState extends State<Home> {
         itemBuilder: (context, index){
           return Card(
             child: ListTile(
-              onTap: (){},
+              onTap: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CreatedEventInfo(eventId: events[index].id),
+                  ),
+
+                );
+
+              },
               title: Text(events[index].title),
               subtitle: Column(
                 children: <Widget>[
