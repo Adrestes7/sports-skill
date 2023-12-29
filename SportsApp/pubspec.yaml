@@ -65,6 +65,7 @@ flutter:
   assets:
     - Assets/Images/
     - Assets/Icons/
+    - Assets/Icons/Search_light.svg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

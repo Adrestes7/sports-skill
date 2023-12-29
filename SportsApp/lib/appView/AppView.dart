@@ -60,7 +60,7 @@ class _AppViewState extends State<AppView> {
                 'Assets/Icons/Add_square_light.svg',
 
               ),
-              label: 'Create Event',
+              label: 'Create',
             ),
             BottomNavigationBarItem(
               icon: SvgPicture.asset(
