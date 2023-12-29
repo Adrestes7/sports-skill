@@ -10,6 +10,6 @@ class ProfilePage  extends StatefulWidget {
 class Profile_State extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    return Text("te amo");
+    return ;
   }
 }
