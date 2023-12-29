@@ -24,7 +24,7 @@ class _SelectCategoryState extends State<SelectCategory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(140), // Adjust height as needed
+        preferredSize: Size.fromHeight(140),
         child: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
@@ -35,7 +35,7 @@ class _SelectCategoryState extends State<SelectCategory> {
                 padding: const EdgeInsets.only(left: 16.0, top: 30.0),
                 child: TextButton(
                   onPressed: () {
-                    // Add functionality for "Save & Exit" button
+                    // Add functionality for "Save & Exit" button, to return home check Airbnb
                   },
                   child: Text(
                     'Save & Exit',
