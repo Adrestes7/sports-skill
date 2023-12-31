@@ -5,11 +5,9 @@ import 'package:sports_app/entities/Event.dart';
 class CreatedEventInfo extends StatefulWidget {
   final String eventId;
 
-  CreatedEventInfo({required this.eventId});
+  const CreatedEventInfo({super.key, required this.eventId});
 
   @override
-
-
   _CreatedEventInfoState createState() => _CreatedEventInfoState ();
 }
 

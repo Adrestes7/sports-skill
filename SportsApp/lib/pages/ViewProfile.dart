@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:sports_app/entities/Profile.dart';
 import 'package:sports_app/services/EventsService.dart';
 
-class ProfilePage extends StatefulWidget {
+class ViewProfilePage extends StatefulWidget {
   final String id;
 
-  const ProfilePage({super.key, required this.id});
+  const ViewProfilePage({super.key, required this.id});
 
   @override
-  State<ProfilePage> createState() => Profile_State();
+  State<ViewProfilePage> createState() => Profile_State();
 }
 
-class Profile_State extends State<ProfilePage> {
+class Profile_State extends State<ViewProfilePage> {
   late Future<Profile> _profile;
 
   @override
