@@ -8,12 +8,17 @@ import 'package:sports_app/pages/Profile.dart';
 import 'package:sports_app/pages/SelectCategory.dart';
 import 'package:sports_app/pages/Splash.dart';
 import 'package:sports_app/pages/CreatedEventInfo.dart';
+import 'package:sports_app/pages/Onboard_Welcome.dart';
+import 'package:sports_app/pages/Onboard_Sign_In_Tap.dart';
+
 void main() {
   runApp(MaterialApp(
-    initialRoute: '/',
+    initialRoute: '/onboardsignintap',
     routes: {
       '/': (context) => AppView(),
       '/splash': (context) => Splash(),
+      '/onboardwelcome': (context) => OnboardWelcome(),
+      '/onboardsignintap': (context) => Onboard_Sign_In_Tap(),
       '/home': (context) => Home(),
       '/profile': (context) => ProfilePage(),
       '/event': (context) => CreateEvent(),

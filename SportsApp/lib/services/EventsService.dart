@@ -32,7 +32,7 @@ class EventService {
 
   Future<Event> getEventById(int eventId) async {
     Response response = await get(Uri.parse(
-        "https://989eaf5a-1bd9-48eb-8402-e9db47c3a2ee.mock.pstmn.io/events"));
+        "https://989eaf5a-1bd9-48eb-8402-e9db47c3a2ee.mock.pstmn.io/events/12344"));
 
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = json.decode(response.body);
