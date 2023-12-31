@@ -1,7 +1,7 @@
 
 class Feedback{
 
-  int grade;
+  double grade;
   int numberOfPersons;
 
   Feedback(this.grade, this.numberOfPersons);

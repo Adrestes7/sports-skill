@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../pages/Home.dart';
-import '../pages/Profile.dart';
+import '../pages/ViewProfile.dart';
 
 class AppView extends StatefulWidget {
   const AppView({super.key});
@@ -14,7 +14,7 @@ class _AppViewState extends State<AppView> {
   int _currentIndex = 0;
   final tabs = [
     Home(),
-    ProfilePage()
+    ProfilePage(id: '1',)
   ];
 
   @override
@@ -31,12 +31,12 @@ class _AppViewState extends State<AppView> {
         currentIndex: _currentIndex,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: const Icon(Icons.home),
             label: 'Home',
             backgroundColor: Colors.grey[200],
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
+              icon: const Icon(Icons.person),
               label: 'Profile',
               backgroundColor: Colors.grey[200]
           ),
