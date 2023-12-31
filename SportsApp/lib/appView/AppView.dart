@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_svg/flutter_svg.dart';
 import '../pages/Home.dart';
 import '../pages/ViewProfile.dart';
+import '../pages/ViewProfile.dart';
+import '../pages/CreateEvent.dart';
+
 
 class AppView extends StatefulWidget {
-  const AppView({super.key});
+  const AppView({Key? key});
 
   @override
   State<AppView> createState() => _AppViewState();
@@ -12,9 +15,11 @@ class AppView extends StatefulWidget {
 
 class _AppViewState extends State<AppView> {
   int _currentIndex = 0;
-  final tabs = [
+  final List<Widget> tabs = [
     Home(),
-    ProfilePage(id: '1',)
+    ViewProfilePage(id: '1'),
+    CreateEvent()
+    //Screen(), // Pending to add User events and chat with communities, we need the user
   ];
 
   @override
@@ -25,33 +30,73 @@ class _AppViewState extends State<AppView> {
         centerTitle: true,
         backgroundColor: Colors.grey[200],
       ),
-      body: tabs[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.shifting,
-        currentIndex: _currentIndex,
-        items: [
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.home),
-            label: 'Home',
-            backgroundColor: Colors.grey[200],
-          ),
-          BottomNavigationBarItem(
-              icon: const Icon(Icons.person),
-              label: 'Profile',
-              backgroundColor: Colors.grey[200]
-          ),
-        ],
-        onTap: (index){
-          setState(() {
-            _currentIndex = index;
-          });
-        },
+      body: IndexedStack(
+        index: _currentIndex,
+        children: tabs,
       ),
-      floatingActionButton: _currentIndex !=0?Container(): FloatingActionButton(
-        child: Icon(Icons.add),
+      bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _currentIndex,
+          onTap: (index) {
+            setState(() {
+              _currentIndex = index;
+            });
+          },
+          items: [
+            BottomNavigationBarItem(
+              icon: SvgPicture.asset(
+                'Assets/Icons/Search_light.svg',
+
+              ),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: SvgPicture.asset(
+                'Assets/Icons/User_box_light.svg',
+
+              ),
+              label: 'Profile',
+            ),
+            BottomNavigationBarItem(
+              icon: SvgPicture.asset(
+                'Assets/Icons/Add_square_light.svg',
+
+              ),
+              label: 'Create',
+            ),
+            BottomNavigationBarItem(
+              icon: SvgPicture.asset(
+                'Assets/Icons/Order_light.svg',
+
+              ),
+              label: 'Activity',
+            ),
+            BottomNavigationBarItem(
+              icon: SvgPicture.asset(
+                'Assets/Icons/Chat_alt_2_light.svg',
+
+              ),
+              label: 'Communities',
+            ),
+          ],
+
+          selectedItemColor: Colors.blue, // Color of selected icon
+          unselectedItemColor: Colors.black, // Color of unselected icons
+          selectedLabelStyle: const TextStyle(
+              color: Colors.red,
+              fontSize: 10), // Color of selected label
+          unselectedLabelStyle: const TextStyle(
+              color: Colors.black,
+              fontSize: 10) // Color of unselected labels
+
+      ),
+      floatingActionButton: _currentIndex != 0
+          ? null
+          : FloatingActionButton(
+        child: const Icon(Icons.add),
         onPressed: () {
           Navigator.pushNamed(context, '/event');
-        },)
+        },
+      ),
     );
   }
 }
