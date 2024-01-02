@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../pages/Home.dart';
-import '../pages/Profile.dart';
+import '../pages/ViewProfile.dart';
+import '../pages/ViewProfile.dart';
 import '../pages/CreateEvent.dart';
 
 
@@ -16,8 +17,8 @@ class _AppViewState extends State<AppView> {
   int _currentIndex = 0;
   final List<Widget> tabs = [
     Home(),
-    ProfilePage(),
-    CreateEvent(),
+    ViewProfilePage(id: '1'),
+    CreateEvent()
     //Screen(), // Pending to add User events and chat with communities, we need the user
   ];
 
@@ -80,10 +81,10 @@ class _AppViewState extends State<AppView> {
 
           selectedItemColor: Colors.blue, // Color of selected icon
           unselectedItemColor: Colors.black, // Color of unselected icons
-          selectedLabelStyle: TextStyle(
+          selectedLabelStyle: const TextStyle(
               color: Colors.red,
               fontSize: 10), // Color of selected label
-          unselectedLabelStyle: TextStyle(
+          unselectedLabelStyle: const TextStyle(
               color: Colors.black,
               fontSize: 10) // Color of unselected labels
 
@@ -91,7 +92,7 @@ class _AppViewState extends State<AppView> {
       floatingActionButton: _currentIndex != 0
           ? null
           : FloatingActionButton(
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
         onPressed: () {
           Navigator.pushNamed(context, '/event');
         },

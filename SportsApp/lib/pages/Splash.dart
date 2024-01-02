@@ -1,10 +1,10 @@
 import 'dart:async';
-import 'dart:html';
 
 import 'package:flutter/material.dart';
-import 'package:sports_app/pages/Home.dart';
 
 class Splash extends StatefulWidget {
+  const Splash({super.key});
+
   @override
   SplashState createState() => SplashState();
 }
@@ -14,16 +14,12 @@ class SplashState extends State<Splash> {
   void initState() {
     super
         .initState(); // For future initialization logics like time or animations Ej: Uber
-
   }
 
   @override
   Widget build(BuildContext context) {
-
-    Timer(Duration(seconds: 2),(){
-
+    Timer(const Duration(seconds: 2), () {
       Navigator.of(context).pushReplacementNamed('/');
-
     });
 
     return Scaffold(
@@ -33,8 +29,8 @@ class SplashState extends State<Splash> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Image.asset('Assets/Images/Logov1.png', width: 150, height: 150),
-            SizedBox(height: 20),
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               'Communities',
               style: TextStyle(
                   color: Colors.white,
