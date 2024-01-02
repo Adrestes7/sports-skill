@@ -13,7 +13,7 @@ import 'package:sports_app/pages/Onboard_Sign_In_Tap.dart';
 
 void main() {
   runApp(MaterialApp(
-    initialRoute: '/onboardsignintap',
+    initialRoute: '/',
     routes: {
       '/': (context) => AppView(),
       '/splash': (context) => Splash(),
