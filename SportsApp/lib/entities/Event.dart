@@ -28,6 +28,11 @@ class Event {
       this.description);
   
   static Event fromJson(dynamic data){
-    return Event(data['id'], data['category'], data['subCategory'], data['date'], data['startTime'], data['endTime'], data['price'], data['numberOfPersons'], data['location'], data['title'], data['description']);
+    return Event(data["id"], data["category"],
+        data["subCategory"], data["date"],
+        data["startTime"], data["endTime"],
+        data["price"], data["numberOfPersons"],
+        data["location"], data["title"],
+        data["description"]);
   }
 }

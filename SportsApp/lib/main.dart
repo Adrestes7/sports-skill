@@ -20,7 +20,7 @@ void main() {
       '/event': (context) => CreateEvent(),
       '/category': (context) => SelectCategory(),
       '/eventinfo': (context) => EventInfo(),
-      '/createdeventinfo': (context) => CreatedEventInfo(eventId: '',),
+      '/createdeventinfo': (context) => CreatedEventInfo(id: '12344',),
 
     },
   ));
