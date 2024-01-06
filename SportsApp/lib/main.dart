@@ -11,7 +11,7 @@ import 'package:sports_app/pages/CreatedEventInfo.dart';
 
 void main() {
   runApp(MaterialApp(
-    initialRoute: '/',
+    initialRoute: '/splash',
     routes: {
       '/': (context) => AppView(),
       '/splash': (context) => Splash(),
@@ -20,7 +20,7 @@ void main() {
       '/event': (context) => CreateEvent(),
       '/category': (context) => SelectCategory(),
       '/eventinfo': (context) => EventInfo(),
-      '/createdeventinfo': (context) => CreatedEventInfo(id: '12344',),
+      '/createdeventinfo': (context) => CreatedEventInfo(id: '1',),
 
     },
   ));

@@ -26,7 +26,7 @@ class _AppViewState extends State<AppView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sports App'),
+        title: Text('Tribe'),
         centerTitle: true,
         backgroundColor: Colors.grey[200],
       ),

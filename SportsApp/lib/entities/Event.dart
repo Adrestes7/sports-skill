@@ -11,8 +11,12 @@ class Event {
   String price;
   String numberOfPersons;
   String location;
+  String country;
+  String city;
   String title;
   String description;
+  String mainPhotoUrl;
+  List<String> photoUrls;
 
   Event(
       this.id,
@@ -24,15 +28,23 @@ class Event {
       this.price,
       this.numberOfPersons,
       this.location,
+      this.country,
+      this.city,
       this.title,
-      this.description);
-  
+      this.description,
+      this.mainPhotoUrl,
+      this.photoUrls);
+
   static Event fromJson(dynamic data){
-    return Event(data["id"], data["category"],
-        data["subCategory"], data["date"],
-        data["startTime"], data["endTime"],
-        data["price"], data["numberOfPersons"],
-        data["location"], data["title"],
-        data["description"]);
+    return Event(data['id'] ?? "", data['category'] ?? "",
+        data['subCategory']?? "", data['date']?? "",
+        data['startTime']?? "", data['endTime']?? "",
+        data['price']?? "", data['numberOfPersons']?? "",
+        data['location']?? "", data ['country']?? "", data ['city']?? "",
+        data['title']?? "",
+        data['description']?? "",data['mainPhotoUrls']?? "",
+        List<String>.from(data['photoUrls'] ?? []), );
   }
 }
+
+

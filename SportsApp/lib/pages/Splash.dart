@@ -23,18 +23,18 @@ class SplashState extends State<Splash> {
     });
 
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Image.asset('Assets/Images/Logov1.png', width: 150, height: 150),
-            const SizedBox(height: 20),
+            Image.asset('Assets/Images/Logov1.png', width: 300, height: 300),
+            const SizedBox(height: 40),
             const Text(
-              'Communities',
+              'Tribu',
               style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
+                  color: Colors.grey,
+                  fontSize: 45,
                   fontWeight: FontWeight.bold),
             ),
           ],

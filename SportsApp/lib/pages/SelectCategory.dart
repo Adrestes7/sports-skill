@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../entities/Category.dart';
+import '../entities/Categorietypes.dart';
 import '../services/EventsService.dart';
 
 class SelectCategory extends StatefulWidget {
