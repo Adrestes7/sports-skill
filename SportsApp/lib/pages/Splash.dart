@@ -28,7 +28,7 @@ class SplashState extends State<Splash> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Image.asset('Assets/Images/Logov1.png', width: 300, height: 300),
+            Image.asset('Assets/Images/Logov1.png', width: 150, height: 150),
             const SizedBox(height: 40),
             const Text(
               'Tribu',

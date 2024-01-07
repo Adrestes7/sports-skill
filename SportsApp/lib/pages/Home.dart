@@ -3,6 +3,8 @@ import 'package:sports_app/pages/CreatedEventInfo.dart';
 import 'package:sports_app/services/EventsService.dart';
 import 'package:sports_app/entities/Event.dart';
 import 'package:sports_app/widgets/CategoryTypeList.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
+import 'dart:async';
 
 class Home extends StatefulWidget {
   const Home({Key? key});
@@ -13,6 +15,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   List<Event> events = [];
   late Future<List<Event>> _events;
+  int _currentPage = 0; // Track the current page for indicators
 
   void initState() {
     super.initState();
@@ -138,25 +141,55 @@ class _HomeState extends State<Home> {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                  Container(
-                  clipBehavior: Clip.antiAlias,
-                  width: size.width,
-                  height: size.width - 10.0,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16.0),
-                  ),
-                  child: PageView(
-                    children: events[index].photoUrls.map((imageUrls) {
-                      return Image.network(
-                        imageUrls,
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) {
-                          return Placeholder(); // Display a placeholder image or error message
-                        },
-                      );
-                    }).toList(),
-                  ),
-                ),
+                    Container(
+                      clipBehavior: Clip.antiAlias,
+                      width: 1000,
+                      height: 300,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16.0),
+                      ),
+                      child: Stack(
+                        children: [
+                          PageView(
+                            onPageChanged: (int page) {
+                              setState(() {
+                                _currentPage = page;
+                              });
+                            },
+                            children: events[index].photoUrls.map((imageUrls) {
+                              return Image.asset(
+                                imageUrls,
+                                height: 10.0,
+                                width: 10.0,
+                                fit: BoxFit.cover,
+                                errorBuilder: (context, error, stackTrace) {
+                                  return Placeholder(); // Display a placeholder image or error message
+                                },
+                              );
+                            }).toList(),
+                          ),
+                          Positioned(
+                            bottom: 10,
+                            left: 0,
+                            right: 0,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: events[index].photoUrls.asMap().entries.map((entry) {
+                                return Container(
+                                  width: 8.0,
+                                  height: 8.0,
+                                  margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: _currentPage == entry.key ? Colors.white : Colors.grey,
+                                  ),
+                                );
+                              }).toList(),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                     const SizedBox(height: 16.0),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -199,9 +232,9 @@ class _HomeState extends State<Home> {
                       ],
                     ),
                     const SizedBox(height: 16.0),
-                  ]
+                  ],
                 );
-              }
+              },
             );
           }
         },
@@ -209,3 +242,4 @@ class _HomeState extends State<Home> {
     );
   }
 }
+

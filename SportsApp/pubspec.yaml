@@ -32,6 +32,8 @@ dependencies:
     sdk: flutter
   http: ^1.1.0
   flutter_svg: ^0.22.0
+  flutter_image_compress: ^2.1.0
+
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -65,6 +67,8 @@ flutter:
     - Assets/Images/
     - Assets/Icons/
     - Assets/Icons/Search_light.svg
+    - Assets/Images/futmatch1.jpg
+    - Assets/Images/futmatch2.jpg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

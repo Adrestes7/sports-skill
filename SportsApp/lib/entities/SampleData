@@ -15,7 +15,8 @@
       "title": "Fut 5 after Work",
       "description": "We play at least twice a week after work near cedritos",
       "mainPhotoUrl": "Assets/Images/futmatch1.jpg",
-      "photoUrl": [
+      "photoUrls": [
+        "Assets/Images/futmatch1.jpg",
         "Assets/Images/futmatch2.jpg"
       ]
     },
@@ -34,9 +35,10 @@
       "title": "Weekly training Club",
       "description": "We give trainings at X club weekly regularly 2 or 3 times a week for all ages starting from 18",
       "mainPhotoUrl": "Assets/Images/futtrain1.jpg",
-      "photoUrl": [
-        "Assets/Images/futtrain2.jpg",
-        "Assets/Images/futtrain3.jpg"
+      "photoUrls": [
+        "Assets/Images/futtrain1.jpg",
+        "Assets/Images/futtrain3.jpg",
+        "Assets/Images/futtrain2.jpg"
       ]
     },
     {
@@ -54,7 +56,7 @@
       "title": "Chilling tennis at Forest Hill",
       "description": "Looking for a partner to play some matches at Forest hill fields, just need to pay for caddy",
       "mainPhotoUrl": "Assets/Images/tennis1.jpg",
-      "photoUrl": [
+      "photoUrls": [
         "Assets/Images/tennis2.jpg"
       ]
     },
@@ -73,7 +75,7 @@
       "title": "Tejo & Beer with friends",
       "description": "Playing on saturday with some friends, chilling and grabbing some beers",
       "mainPhotoUrl": "Assets/Images/tejo1.jpg",
-      "photoUrl": [
+      "photoUrls": [
         "Assets/Images/tejo2.jpg",
         "Assets/Images/tejo3.jpg"
       ]
@@ -93,7 +95,7 @@
       "title": "Quebrada la vieja walk",
       "description": "Come join us to do some trecking and visit quebrada la vieja, meeting at carrera 5ta entrance",
       "mainPhotoUrl": "Assets/Images/quebrada1.jpg",
-      "photoUrl": [
+      "photoUrls": [
         "Assets/Images/quebrada2.jpg"
       ]
     },
@@ -112,7 +114,7 @@
       "title": "Off road at Suesca near Bogotá",
       "description": "Lets meet at Autopusta norte to grab some offroad challenges in Suesca, returning same day or able to stay there",
       "mainPhotoUrl": "Assets/Images/4x42.jpg",
-      "photoUrl": [
+      "photoUrls": [
         "Assets/Images/4x41.jpg",
         "Assets/Images/4x43.jpg"
       ]
@@ -132,7 +134,7 @@
       "title": "Rappi after office drinks and party at Provenza",
       "description": "Join rappi team after ",
       "mainPhotoUrl": "Assets/Images/provenza1.jpg",
-      "photoUrl": [
+      "photoUrls": [
         "Assets/Images/provenza2.jpg"
       ]
     }
