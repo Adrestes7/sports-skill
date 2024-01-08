@@ -8,7 +8,7 @@ import 'package:sports_app/entities/Profile.dart';
 class EventService {
  static Future<List<Event>> getHomeData() async {
  List<Event> events = [];
- Response response = await get(Uri.parse("https://20a4eb74-bee9-4d2a-88e0-d6fd440bdc14.mock.pstmn.io/events"));
+ Response response = await get(Uri.parse("https://06bf3054-c005-401c-956b-c3c6d658775e.mock.pstmn.io/events"));
  Map data = jsonDecode(response.body);
  List<dynamic> jsonEvents = data["events"];
  jsonEvents.forEach((element) {
@@ -34,7 +34,7 @@ class EventService {
   }
 
    static Future<Event> getEventById(String id) async{
-   Response response = await get(Uri.parse("https://cc23c687-6f58-4ed6-984c-7b35e59a5af7.mock.pstmn.io/events/$id"));
+   Response response = await get(Uri.parse("https://06bf3054-c005-401c-956b-c3c6d658775e.mock.pstmn.io/events/$id"));
    Map data = jsonDecode(response.body);
    return Event.fromJson(data);
   }
