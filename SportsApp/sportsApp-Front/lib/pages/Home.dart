@@ -63,6 +63,7 @@ class _HomeState extends State<Home> {
                 return const Center(child: Text('Profile not found'));
               } else {
                 events = snapshot.data!;
+                filteredEvents = events;
                 return ListView.builder(
                   itemCount: filteredEvents.length,
                   itemBuilder: (context, index) {
