@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sports_app/widgets/CategoryTypeList.dart';
 
 
 class CategoryTypes extends StatefulWidget {

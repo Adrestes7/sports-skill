@@ -17,14 +17,14 @@ class EventService {
  return events;
  }
 
-  static Future<List<Category>> getCategoryData() async{
-    List<Category> categories =[];
+ static Future<List<Category>> getCategoryData() async{
+   List<Category> categories =[];
     Response response = await get(Uri.parse("https://7cadcbfc-005c-4480-89e1-93f478e35874.mock.pstmn.io/category"));
     Map data = jsonDecode(response.body);
     List<dynamic> jsonCategories = data["categories"];
     for (var category in jsonCategories)
     {categories.add(Category.fromJson(category)); }
-    return categories;
+   return categories;
   }
 
   static Future<Profile> getProfileData(String id) async{

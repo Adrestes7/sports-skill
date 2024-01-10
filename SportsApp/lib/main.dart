@@ -1,27 +1,47 @@
 
+//Flutter Material App
 import 'package:flutter/material.dart';
-import 'package:sports_app/appView/AppView.dart';
-import 'package:sports_app/pages/CreateEvent.dart';
-import 'package:sports_app/pages/EventInfo.dart';
-import 'package:sports_app/pages/Home.dart';
-import 'package:sports_app/pages/ViewProfile.dart';
-import 'package:sports_app/pages/SelectCategory.dart';
+// Onboarding Flow
 import 'package:sports_app/pages/Splash.dart';
-import 'package:sports_app/pages/CreatedEventInfo.dart';
+// Main App screens
+import 'package:sports_app/pages/Home.dart';
+import 'package:sports_app/appView/AppView.dart';
+// Search and Book Events Flow
+import 'package:sports_app/pages/Created_Event_Info.dart';
+// Profile Flow
+import 'package:sports_app/pages/View_Profile.dart';
+// Create Event Flow
+import 'package:sports_app/pages/Create_Event_Instructions.dart';
+import 'package:sports_app/pages/Create_Event_Select_Category.dart';
+import 'package:sports_app/pages/Create_Event_Main_Info.dart';
+import 'package:sports_app/pages/Create_Event_Load_Photos.dart';
+
+// Review Booked and Created Events Flow
+// Chat & Interact Flow
+
+
+
 
 void main() {
   runApp(MaterialApp(
-    initialRoute: '/event',
+    initialRoute: '/create_event_load_photos',
     routes: {
-      '/': (context) => AppView(),
+      // Onboarding Flow
       '/splash': (context) => Splash(),
+      // Main App screens
+      '/': (context) => AppView(),
       '/home': (context) => Home(),
-      '/profile': (context) => ViewProfilePage(id: '1',),
-      '/event': (context) => CreateEvent(),
-      '/category': (context) => SelectCategory(),
-      '/eventinfo': (context) => EventInfo(),
-      '/createdeventinfo': (context) => CreatedEventInfo(id: '1',),
-
+      // Search and Book Events Flow
+      '/created_event_info': (context) => CreatedEventInfo(id: '1',),
+      // Profile Flow
+      '/view_profile': (context) => ViewProfilePage(id: '1',),
+      // Create Event Flow
+      '/create_event_instructions': (context) => CreateEvent(),
+      '/create_event_select_category': (context) => SelectEventCategory(),
+      '/create_event_main_info': (context) => EventInfo(),
+      '/create_event_load_photos' : (context) => CreateEventLoadPhotos(),
+      // Review Booked and Created Events Flow
+      // Chat & Interact Flow
     },
   ));
 

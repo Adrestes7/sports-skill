@@ -19,7 +19,7 @@ class _CreateEventState extends State<CreateEvent> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            '',
+            'Create an Event',
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
@@ -65,32 +65,32 @@ class _CreateEventState extends State<CreateEvent> {
                     '3. Finish up & Publish',
                     'Set an initial price, safety rules',
                   ),
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/create_event_select_category');
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.green, // Button background color
+                          onPrimary: Colors.white, // Text color
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0), // Button border radius
+                          ),
+                          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 100),
+                        ),
+                        child: Text(
+                          'Get Started',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
-              ),
-            ),
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/category');
-                  },
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.green, // Button background color
-                    onPrimary: Colors.white, // Text color
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0), // Button border radius
-                    ),
-                    padding: EdgeInsets.symmetric(vertical: 20, horizontal: 100),
-                  ),
-                  child: Text(
-                    'Get Started',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.normal,
-                    ),
-                  ),
-                ),
               ),
             ),
           ],

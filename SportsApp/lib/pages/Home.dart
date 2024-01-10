@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:sports_app/pages/CreatedEventInfo.dart';
+import 'package:sports_app/pages/Created_Event_Info.dart';
 import 'package:sports_app/services/EventsService.dart';
 import 'package:sports_app/entities/Event.dart';
 import 'package:sports_app/widgets/CategoryTypeList.dart';
