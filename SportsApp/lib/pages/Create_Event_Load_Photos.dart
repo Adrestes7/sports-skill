@@ -84,6 +84,33 @@ class _CreateEventLoadPhotosState extends State<CreateEventLoadPhotos> {
           ),
         ],
       ),
+      bottomNavigationBar: Container(
+        color: Colors.black,
+        padding: EdgeInsets.symmetric(horizontal: 16.0),
+        child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+          TextButton(
+            onPressed: () {
+
+              Navigator.pushNamed(context, '/create_event_photos_display');
+
+            },
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+              foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+              padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+              ),
+            ),
+            child: Text(
+              'Next',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16.0,
+              ),
+            ),
+          ),
+        ]),
+      ),
     );
   }
 

@@ -33,7 +33,9 @@ dependencies:
   http: ^1.1.0
   flutter_svg: ^0.22.0
   flutter_image_compress: ^2.1.0
-  image_picker: ^0.8.4+4
+  image_picker: ^0.8.9
+  flutter_reorderable_list: ^1.3.1
+
 
 
 

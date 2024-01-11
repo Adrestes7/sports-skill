@@ -15,6 +15,7 @@ import 'package:sports_app/pages/Create_Event_Instructions.dart';
 import 'package:sports_app/pages/Create_Event_Select_Category.dart';
 import 'package:sports_app/pages/Create_Event_Main_Info.dart';
 import 'package:sports_app/pages/Create_Event_Load_Photos.dart';
+import 'package:sports_app/pages/Create_Event_Photos_Display.dart';
 
 // Review Booked and Created Events Flow
 // Chat & Interact Flow
@@ -40,6 +41,7 @@ void main() {
       '/create_event_select_category': (context) => SelectEventCategory(),
       '/create_event_main_info': (context) => EventInfo(),
       '/create_event_load_photos' : (context) => CreateEventLoadPhotos(),
+      '/create_event_photos_display' : (context) => CreateEventPhotosDisplay (),
       // Review Booked and Created Events Flow
       // Chat & Interact Flow
     },
