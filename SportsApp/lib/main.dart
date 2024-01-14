@@ -16,8 +16,11 @@ import 'package:sports_app/pages/Create_Event_Select_Category.dart';
 import 'package:sports_app/pages/Create_Event_Main_Info.dart';
 import 'package:sports_app/pages/Create_Event_Load_Photos.dart';
 import 'package:sports_app/pages/Create_Event_Photos_Display.dart';
+import 'package:sports_app/pages/Create_Event_Add_Title.dart';
 
-// Review Booked and Created Events Flow
+//  User Activity Flow (review and adjust current created adn booked events
+import 'package:sports_app/pages/Activity_Review_Events.dart';
+
 // Chat & Interact Flow
 
 
@@ -25,7 +28,7 @@ import 'package:sports_app/pages/Create_Event_Photos_Display.dart';
 
 void main() {
   runApp(MaterialApp(
-    initialRoute: '/create_event_load_photos',
+    initialRoute: '/',
     routes: {
       // Onboarding Flow
       '/splash': (context) => Splash(),
@@ -42,6 +45,11 @@ void main() {
       '/create_event_main_info': (context) => EventInfo(),
       '/create_event_load_photos' : (context) => CreateEventLoadPhotos(),
       '/create_event_photos_display' : (context) => CreateEventPhotosDisplay (),
+      '/create_event_add_title' : (context) => CreateEventAddTitle (),
+      //  User Activity Flow (review and adjust current created adn booked events
+      '/activity_review_events' : (context) => ActivityReviewEvents (),
+
+
       // Review Booked and Created Events Flow
       // Chat & Interact Flow
     },

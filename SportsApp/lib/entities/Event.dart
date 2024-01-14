@@ -42,7 +42,7 @@ class Event {
         data['price']?? "", data['numberOfPersons']?? "",
         data['location']?? "", data ['country']?? "", data ['city']?? "",
         data['title']?? "",
-        data['description']?? "",data['mainPhotoUrls']?? "",
+        data['description']?? "",data['mainPhotoUrl']?? "",
         List<String>.from(data['photoUrls'] ?? []), );
   }
 }

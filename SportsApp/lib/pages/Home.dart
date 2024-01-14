@@ -18,6 +18,8 @@ class _HomeState extends State<Home> {
   late Future<List<Event>> _events;
   int _currentPage = 0; // Track the current page for indicators
 
+  EventService _eventService = EventService(); // Create an instance of EventService
+
   void initState() {
     super.initState();
     _events = EventService.getHomeData().then((value) {

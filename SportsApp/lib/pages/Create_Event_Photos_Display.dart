@@ -29,7 +29,7 @@ class _CreateEventPhotosDisplayState extends State<CreateEventPhotosDisplay> {
           TextButton(
             onPressed: () {
 
-              Navigator.pushNamed(context, '/create_event_photos_display');
+              Navigator.pushNamed(context, '/create_event_add_title');
 
             },
             style: ButtonStyle(
