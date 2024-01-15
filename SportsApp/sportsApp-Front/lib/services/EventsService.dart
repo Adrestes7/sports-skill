@@ -9,13 +9,20 @@ import 'package:sports_app/entities/Profile.dart';
 class EventService {
   static Future<List<Event>> getHomeData() async {
     List<Event> events = [];
-    Response response = await get(Uri.parse("https://7cadcbfc-005c-4480-89e1-93f478e35874.mock.pstmn.io/events"));
-    Map data = jsonDecode(response.body);
-    List<dynamic> jsonEvents = data["events"];
-    jsonEvents.forEach((element) {
-      events.add(Event.fromJson(element));
-    });
-    return events;
+    try{
+      Response response = await get(Uri.http('sportsapp-back-dev.us-east-1.elasticbeanstalk.com', '/events'));
+      List<dynamic> jsonEvents = jsonDecode(response.body);
+      jsonEvents.map((e) => {
+        events.add(Event.fromJson(e))
+      });
+      jsonEvents.forEach((element) {
+        events.add(Event.fromJson(element));
+      });
+      return events;
+    } on Exception catch(e){
+      print(e);
+      return events;
+    }
   }
 
   static Future<List<Category>> getCategoryData() async{
