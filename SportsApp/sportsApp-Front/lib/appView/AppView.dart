@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../pages/Home.dart';
-import '../pages/ViewProfile.dart';
-import '../pages/ViewProfile.dart';
-import '../pages/CreateEvent.dart';
+import '../pages/View_Profile.dart';
+import '../pages/Create_Event_Instructions.dart';
 
 
 class AppView extends StatefulWidget {
@@ -26,7 +25,7 @@ class _AppViewState extends State<AppView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sports App'),
+        title: Text('Tribe'),
         centerTitle: true,
         backgroundColor: Colors.grey[200],
       ),

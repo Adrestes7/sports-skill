@@ -1,12 +1,12 @@
 
 import 'package:http/http.dart';
-import 'package:sports_app/entities/Category.dart';
+import 'package:sports_app/entities/Categorietypes.dart';
 import 'dart:convert';
-
 import 'package:sports_app/entities/Event.dart';
 import 'package:sports_app/entities/Profile.dart';
 
 class EventService {
+
   static Future<List<Event>> getHomeData() async {
     List<Event> events = [];
     try{
@@ -41,16 +41,10 @@ class EventService {
     return Profile.fromJson(data);
   }
 
-  Future<Event> getEventById(int eventId) async {
-    Response response = await get(Uri.parse(
-        "https://989eaf5a-1bd9-48eb-8402-e9db47c3a2ee.mock.pstmn.io/events"));
-
-    if (response.statusCode == 200) {
-      final Map<String, dynamic> data = json.decode(response.body);
-      Event event = Event.fromJson(data);
-      return event;
-    } else {
-      throw Exception('Failed to load event');
-    }
+  static Future<Event> getEventById(String id) async{
+  Response response = await get(Uri.parse("https://06bf3054-c005-401c-956b-c3c6d658775e.mock.pstmn.io/events/$id"));
+  Map data = jsonDecode(response.body);
+  return Event.fromJson(data);
   }
-}
+  }
+

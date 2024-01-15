@@ -104,33 +104,36 @@ class _EventInfoState extends State<EventInfo> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _showDialog,
-        child: Icon(Icons.save),
+      bottomNavigationBar: Container(
+        color: Colors.black,
+        padding: EdgeInsets.symmetric(horizontal: 16.0),
+        child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+          TextButton(
+            onPressed: () {
+
+              Navigator.pushNamed(context, '/create_event_load_photos');
+
+            },
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+              foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+              padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+              ),
+            ),
+            child: Text(
+              'Next',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16.0,
+              ),
+            ),
+          ),
+        ]),
       ),
     );
   }
-  void _showDialog(){
-    showDialog(
-        context: context,
-        builder: (context){
-          return AlertDialog(
-            title: const Text("¿Estás seguro de crear este evento?"),
-            actions: [
-              MaterialButton(
-                  onPressed: (){},
-                  child: const Text('Si'),
-                  color: Colors.blue,
-              ),
-              MaterialButton(
-                  onPressed: (){},
-                  child: const Text('No'),
-                  color: Colors.red,
-              )
-            ],
-          );
-        });
-  }
+
   Future<void> _selectDate() async {
     DateTime? _picked = await showDatePicker(
         context: context,
