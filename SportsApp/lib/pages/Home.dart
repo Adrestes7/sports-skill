@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:sports_app/pages/Created_Event_Info.dart';
-import 'package:sports_app/services/EventsService.dart';
+import 'package:sports_app/services/BackEndService.dart';
 import 'package:sports_app/entities/Event.dart';
 import 'package:sports_app/widgets/CategoryTypeList.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
@@ -18,11 +18,9 @@ class _HomeState extends State<Home> {
   late Future<List<Event>> _events;
   int _currentPage = 0; // Track the current page for indicators
 
-  EventService _eventService = EventService(); // Create an instance of EventService
-
   void initState() {
     super.initState();
-    _events = EventService.getHomeData().then((value) {
+    _events = EventService.getEvents().then((value) {
       setState(() {
         events = value;
       });
