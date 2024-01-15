@@ -1,5 +1,3 @@
-
-
 import 'dart:ffi';
 
 class Event {
@@ -38,8 +36,13 @@ class Event {
       this.photoUrls);
 
   static Event fromJson(dynamic data){
-    return Event(data['id'], data['categor'], data['subCategory'], data['date'], data['startTime'], data['endTime'], data['price'], data['numberOfPersons'], data['address'], data['title'], data['description']);
+    return Event(data['id'] ?? "", data['categor'] ?? "",
+      data['subCategory']?? "", data['date']?? "",
+      data['startTime']?? "", data['endTime']?? "",
+      data['price']?? "", data['numberOfPersons']?? "",
+      data['address']?? "", data ['country']?? "", data ['city']?? "",
+      data['title']?? "",
+      data['description']?? "",data['mainPhotoUrl']?? "",
+      List<String>.from(data['photoUrls'] ?? []), );
   }
 }
-
-

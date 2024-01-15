@@ -49,37 +49,58 @@ class _HomeState extends State<Home> {
               )
             ],
           ),
-        ),
-        body: FutureBuilder<List<Event>>(
-            future: _events,
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(child: CircularProgressIndicator());
-              } else if (snapshot.hasError) {
-                return Center(child: Text('Error: ${snapshot.error}'));
-              } else if (!snapshot.hasData) {
-                return const Center(child: Text('Profile not found'));
-              } else {
-                events = snapshot.data!;
-                filteredEvents = events;
-                return ListView.builder(
-                  itemCount: filteredEvents.length,
-                  itemBuilder: (context, index) {
-                    return Card(
-                      child: Padding(
-                        padding: EdgeInsets.all(12.0),
-                        child: ListTile(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => CreatedEventInfo(
-                                    eventId: filteredEvents[index].id),
-                              ),
-                            );
-                          },
-                          title: Text(filteredEvents[index].title),
-                          subtitle: Column(
+          child: Stack(
+            children: [
+              Positioned(
+                bottom: 0.0,
+                left: 0.0,
+                right: 0.0,
+                child: CategoryTypes(),
+              ),
+              Positioned(
+                top: 25.0,
+                right: 15.0,
+                child: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.tune),
+                ),
+              ),
+              Positioned(
+                left: 16.0,
+                right: 72.0,
+                top: 13.0,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/home_search_filter');
+                  },
+                  child: Hero(
+                    tag: 'home_search',
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16.0,
+                        vertical: 8.0,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(
+                          color: Colors.white,
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(32.0),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.3),
+                            blurRadius: 8.0,
+                            spreadRadius: 5.0,
+                            offset: const Offset(0.0, 4.0),
+                          ),
+                        ],
+                      ),
+                      child: Row(
+                        children: [
+                          const Icon(Icons.search),
+                          const SizedBox(width: 2.0),
+                          Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
@@ -121,24 +142,24 @@ class _HomeState extends State<Home> {
                 return GestureDetector(
                   onTap: () {
                     Navigator.push(context,
-                        PageRouteBuilder(
-                          opaque: false,
-                          barrierColor: Colors.black.withOpacity(0.5),
-                          transitionDuration: const Duration(milliseconds: 1000),
-                          reverseTransitionDuration: const Duration(milliseconds: 300),
-                          pageBuilder: (context, animation, secondaryAnimation) {
-                            return FadeTransition(
-                                opacity: animation,
-                                child: BackdropFilter(
+                      PageRouteBuilder(
+                        opaque: false,
+                        barrierColor: Colors.black.withOpacity(0.5),
+                        transitionDuration: const Duration(milliseconds: 1000),
+                        reverseTransitionDuration: const Duration(milliseconds: 300),
+                        pageBuilder: (context, animation, secondaryAnimation) {
+                          return FadeTransition(
+                              opacity: animation,
+                              child: BackdropFilter(
                                 filter: ImageFilter.blur(
-                                sigmaX: 8.0,
-                                sigmaY: 8.0,
-                            ),
-                            child: CreatedEventInfo(id: events[index].id),
-                                )
-                            );
-                          },
-                        ) as Route<Object?>,
+                                  sigmaX: 8.0,
+                                  sigmaY: 8.0,
+                                ),
+                                child: CreatedEventInfo(id: events[index].id),
+                              )
+                          );
+                        },
+                      ) as Route<Object?>,
                     );
                   },
                   child: Column(
@@ -246,7 +267,3 @@ class _HomeState extends State<Home> {
     );
   }
 }
-
-
-
-
