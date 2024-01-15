@@ -1,0 +1,142 @@
+{
+  "events": [
+    {
+      "id": "1",
+      "category": "Sports",
+      "subCategory": "Soccer",
+      "date": "10-01-2024",
+      "startTime": "16:00:00",
+      "endTime": "17:00:00",
+      "price": "15.000",
+      "numberOfPersons": "10",
+      "location": "Calle 147 # 12-52",
+      "country": "Colombia",
+      "city": "Bogota",
+      "title": "Fut 5 after Work",
+      "description": "We play at least twice a week after work near cedritos",
+      "mainPhotoUrl": "Assets/Images/futmatch1.jpg",
+      "photoUrls": [
+        "Assets/Images/futmatch1.jpg",
+        "Assets/Images/futmatch2.jpg"
+      ]
+    },
+    {
+      "id": "2",
+      "category": "Sports",
+      "subCategory": "Soccer",
+      "date": "12-01-2024",
+      "startTime": "19:00:00",
+      "endTime": "21:00:00",
+      "price": "30.000",
+      "numberOfPersons": "22",
+      "location": "Calle 152 # 58-50",
+      "country": "Colombia",
+      "city": "Bogota",
+      "title": "Weekly training Club",
+      "description": "We give trainings at X club weekly regularly 2 or 3 times a week for all ages starting from 18",
+      "mainPhotoUrl": "Assets/Images/futtrain1.jpg",
+      "photoUrls": [
+        "Assets/Images/futtrain1.jpg",
+        "Assets/Images/futtrain3.jpg",
+        "Assets/Images/futtrain2.jpg"
+      ]
+    },
+    {
+      "id": "3",
+      "category": "Sports",
+      "subCategory": "Tenis",
+      "date": "15-01-2024",
+      "startTime": "06:00:00",
+      "endTime": "08:00:00",
+      "price": "55.000",
+      "numberOfPersons": "2",
+      "location": "Calle 170 # 58-50",
+      "country": "Colombia",
+      "city": "Bogota",
+      "title": "Chilling tennis at Forest Hill",
+      "description": "Looking for a partner to play some matches at Forest hill fields, just need to pay for caddy",
+      "mainPhotoUrl": "Assets/Images/tennis1.jpg",
+      "photoUrls": [
+        "Assets/Images/tennis2.jpg"
+      ]
+    },
+    {
+      "id": "4",
+      "category": "Sports",
+      "subCategory": "Tejo",
+      "date": "18-01-2024",
+      "startTime": "19:00:00",
+      "endTime": "22:00:00",
+      "price": "10.000",
+      "numberOfPersons": "8",
+      "location": "Calle 26 # 50-60",
+      "country": "Colombia",
+      "city": "Bogota",
+      "title": "Tejo & Beer with friends",
+      "description": "Playing on saturday with some friends, chilling and grabbing some beers",
+      "mainPhotoUrl": "Assets/Images/tejo1.jpg",
+      "photoUrls": [
+        "Assets/Images/tejo2.jpg",
+        "Assets/Images/tejo3.jpg"
+      ]
+    },
+    {
+      "id": "5",
+      "category": "Outdoor",
+      "subCategory": "Trecking",
+      "date": "05-02-2024",
+      "startTime": "06:00:00",
+      "endTime": "12:00:00",
+      "price": "30.000",
+      "numberOfPersons": "10",
+      "location": "Calle 72 # 5-10",
+      "country": "Colombia",
+      "city": "Bogota",
+      "title": "Quebrada la vieja walk",
+      "description": "Come join us to do some trecking and visit quebrada la vieja, meeting at carrera 5ta entrance",
+      "mainPhotoUrl": "Assets/Images/quebrada1.jpg",
+      "photoUrls": [
+        "Assets/Images/quebrada2.jpg"
+      ]
+    },
+    {
+      "id": "6",
+      "category": "Outdoor",
+      "subCategory": "4x4",
+      "date": "05-02-2024",
+      "startTime": "06:00:00",
+      "endTime": "23:00:00",
+      "price": "500.000",
+      "numberOfPersons": "15",
+      "location": "Calle 72 # 5-10",
+      "country": "Colombia",
+      "city": "Suesca",
+      "title": "Off road at Suesca near Bogotá",
+      "description": "Lets meet at Autopusta norte to grab some offroad challenges in Suesca, returning same day or able to stay there",
+      "mainPhotoUrl": "Assets/Images/4x42.jpg",
+      "photoUrls": [
+        "Assets/Images/4x41.jpg",
+        "Assets/Images/4x43.jpg"
+      ]
+    },
+    {
+      "id": "7",
+      "category": "Party",
+      "subCategory": "Dance",
+      "date": "07-02-2024",
+      "startTime": "20:00:00",
+      "endTime": "23:00:00",
+      "price": "30.000",
+      "numberOfPersons": "10",
+      "location": "Cra 35 #8a-109",
+      "country": "Colombia",
+      "city": "Medellin",
+      "title": "Rappi after office drinks and party at Provenza",
+      "description": "Join rappi team after ",
+      "mainPhotoUrl": "Assets/Images/provenza1.jpg",
+      "photoUrls": [
+        "Assets/Images/provenza2.jpg"
+      ]
+    }
+  ]
+}
