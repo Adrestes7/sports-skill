@@ -107,7 +107,6 @@ func GetProfile() gin.HandlerFunc {
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 		var profile models.Profile
 		user_id := c.Param("user_id")
-		fmt.Println(user_id)
 		if err := helper.MatchUsertoUid(c, user_id); err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			defer cancel()

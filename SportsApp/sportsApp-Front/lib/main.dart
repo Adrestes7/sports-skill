@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 // Onboarding Flow
 import 'package:sports_app/pages/Splash.dart';
+import 'package:sports_app/pages/Onboard_Welcome.dart';
+import 'package:sports_app/pages/Onboard_Sign_In_Tap.dart';
 // Main App screens
 import 'package:sports_app/pages/Home.dart';
 import 'package:sports_app/appView/AppView.dart';
@@ -20,36 +22,40 @@ import 'package:sports_app/pages/Create_Event_Add_Title.dart';
 
 //  User Activity Flow (review and adjust current created adn booked events
 import 'package:sports_app/pages/Activity_Review_Events.dart';
+import 'package:sports_app/services/LocalStorage.dart';
 
 // Chat & Interact Flow
 
 
 
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await LocalStorage.configurePrefs();
   runApp(MaterialApp(
-    initialRoute: '/',
+    initialRoute: '/onboardwelcome',
     routes: {
       // Onboarding Flow
-      '/splash': (context) => Splash(),
+      '/splash': (context) => const Splash(),
       // Main App screens
-      '/': (context) => AppView(),
-      '/home': (context) => Home(),
+      '/': (context) => const AppView(),
+      '/home': (context) => const Home(),
       // Search and Book Events Flow
-      '/created_event_info': (context) => CreatedEventInfo(id: '1',),
+      '/created_event_info': (context) => const CreatedEventInfo(id: '1',),
       // Profile Flow
-      '/view_profile': (context) => ViewProfilePage(id: '1',),
+      '/view_profile': (context) => const ViewProfilePage(),
       // Create Event Flow
-      '/create_event_instructions': (context) => CreateEvent(),
-      '/create_event_select_category': (context) => SelectEventCategory(),
-      '/create_event_main_info': (context) => EventInfo(),
-      '/create_event_load_photos' : (context) => CreateEventLoadPhotos(),
-      '/create_event_photos_display' : (context) => CreateEventPhotosDisplay (),
+      '/create_event_instructions': (context) => const CreateEvent(),
+      '/create_event_select_category': (context) => const SelectEventCategory(),
+      '/create_event_main_info': (context) => const EventInfo(),
+      '/create_event_load_photos' : (context) => const CreateEventLoadPhotos(),
+      '/create_event_photos_display' : (context) => const CreateEventPhotosDisplay (),
       '/create_event_add_title' : (context) => CreateEventAddTitle (),
       //  User Activity Flow (review and adjust current created adn booked events
       '/activity_review_events' : (context) => ActivityReviewEvents (),
 
-
+      '/onboardwelcome': (context) => OnboardWelcome(),
+      '/onboardsignintap': (context) => const Onboard_Sign_In_Tap(),
       // Review Booked and Created Events Flow
       // Chat & Interact Flow
     },

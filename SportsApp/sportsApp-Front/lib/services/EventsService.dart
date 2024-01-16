@@ -4,13 +4,14 @@ import 'package:sports_app/entities/Categorietypes.dart';
 import 'dart:convert';
 import 'package:sports_app/entities/Event.dart';
 import 'package:sports_app/entities/Profile.dart';
+import 'package:sports_app/services/LocalStorage.dart';
 
 class EventService {
 
   static Future<List<Event>> getHomeData() async {
     List<Event> events = [];
     try{
-      Response response = await get(Uri.http('sportsapp-back-dev.us-east-1.elasticbeanstalk.com', '/events'));
+      Response response = await get(Uri.http('10.0.2.2', '/events'));
       List<dynamic> jsonEvents = jsonDecode(response.body);
       jsonEvents.map((e) => {
         events.add(Event.fromJson(e))
@@ -36,7 +37,9 @@ class EventService {
   }
 
   static Future<Profile> getProfileData(String id) async{
-    Response response = await get(Uri.parse("https://7cadcbfc-005c-4480-89e1-93f478e35874.mock.pstmn.io/profile/$id"));
+    Response response = await get(Uri.parse("http://10.0.2.2:5000/profile/$id"),headers: <String, String>{
+      'token': LocalStorage.prefs.getString("token")!
+    });
     Map data = jsonDecode(response.body);
     return Profile.fromJson(data);
   }
@@ -46,5 +49,20 @@ class EventService {
   Map data = jsonDecode(response.body);
   return Event.fromJson(data);
   }
+
+  static Future<Response> userLogin(String email, String password) async {
+    Response response = await post(Uri.http(
+        '10.0.2.2:5000', '/users/login'),
+        headers: <String, String>{
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+          'email': email,
+          'password': password
+        })
+    );
+
+    return response;
   }
+}
 

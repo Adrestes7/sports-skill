@@ -106,7 +106,7 @@ class _EventInfoState extends State<EventInfo> {
       ),
       bottomNavigationBar: Container(
         color: Colors.black,
-        padding: EdgeInsets.symmetric(horizontal: 16.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
           TextButton(
             onPressed: () {
@@ -118,10 +118,10 @@ class _EventInfoState extends State<EventInfo> {
               backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
               foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
               padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+                const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
               ),
             ),
-            child: Text(
+            child: const Text(
               'Next',
               style: TextStyle(
                 color: Colors.white,

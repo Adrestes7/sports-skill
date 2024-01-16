@@ -7,7 +7,7 @@ class EventService {
 
   static Future<List<Event>> getEvents() async {
     List <Event> events = [];
-    Response response = await get(Uri.http('sportsapp-back-dev.us-east-1.elasticbeanstalk.com', '/events'));
+    Response response = await get(Uri.http('10.0.2.2:5000', '/events'));
     if (response.statusCode == 200) {
       List <dynamic> jsonEvents = jsonDecode(response.body);
 
@@ -18,5 +18,19 @@ class EventService {
       else {
       throw Exception('Failed to load events');
     }
+  }
+
+  static Future<Response> userLogin(String email, String password) async {
+    Response response = await post(Uri.http(
+        '10.0.2.2:5000', '/login'),
+        headers: <String, String>{
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+          'email': email,
+          'password': password
+        })
+    );
+    return response;
   }
 }
