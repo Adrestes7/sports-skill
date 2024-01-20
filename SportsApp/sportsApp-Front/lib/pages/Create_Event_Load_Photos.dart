@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
+import 'package:sports_app/widgets/Providers.dart';
 
 class CreateEventLoadPhotos extends StatefulWidget {
   const CreateEventLoadPhotos({Key? key}) : super(key: key);
@@ -11,19 +13,20 @@ class CreateEventLoadPhotos extends StatefulWidget {
 class _CreateEventLoadPhotosState extends State<CreateEventLoadPhotos> {
   Future<void> takeNewPhoto() async {
     final pickedFile = await ImagePicker().getImage(source: ImageSource.camera);
-    // Do something with the pickedFile (e.g., display the image)
+
     if (pickedFile != null) {
-      // Process the image here or perform any other actions
-      print('Image path: ${pickedFile.path}');
+      String photoPath = pickedFile.path;
+      Provider.of<EventProvider>(context, listen: false).addPhoto(photoPath);
     }
   }
 
   Future<void> pickImageFromLibrary() async {
     final pickedFile = await ImagePicker().getImage(source: ImageSource.gallery);
-    // Do something with the pickedFile (e.g., display the image)
+
     if (pickedFile != null) {
-      // Process the image here or perform any other actions
-      print('Image path: ${pickedFile.path}');
+
+      String photoPath = pickedFile.path;
+      Provider.of<EventProvider>(context, listen: false).addPhoto(photoPath);
     }
   }
 

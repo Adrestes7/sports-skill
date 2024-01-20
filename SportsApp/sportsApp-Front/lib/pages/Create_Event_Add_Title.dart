@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
+import 'package:sports_app/widgets/Providers.dart';
+import 'package:sports_app/services/BackEndService.dart';
+import 'package:sports_app/entities/Event.dart';
+import 'package:sports_app/pages/Create_Event_Main_Info.dart';
 
 class CreateEventAddTitle extends StatefulWidget {
   @override
@@ -20,33 +24,44 @@ class _CreateEventAddTitleState extends State<CreateEventAddTitle> {
         titleController: _titleController,
         descriptionController: _descriptionController,
       ),
-
       bottomNavigationBar: Container(
         color: Colors.black,
         padding: EdgeInsets.symmetric(horizontal: 16.0),
-        child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-          TextButton(
-            onPressed: () {
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            TextButton(
+              onPressed: () async {
+                // Get the EventProvider instance
+                EventProvider eventProvider = Provider.of<EventProvider>(context, listen: false);
 
-              Navigator.pushNamed(context, '/');
+                // Update the title and description
+                eventProvider.updateTitleAndDescription(
+                  _titleController.text,
+                  _descriptionController.text,
+                );
 
-            },
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
-              foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-              padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+                await EventService.sendEvent(eventProvider.event);
+
+                Navigator.pushNamed(context, '/');
+              },
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                  EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+                ),
+              ),
+              child: Text(
+                'Finish',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16.0,
+                ),
               ),
             ),
-            child: Text(
-              'Finish',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16.0,
-              ),
-            ),
-          ),
-        ]),
+          ],
+        ),
       ),
     );
   }

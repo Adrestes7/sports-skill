@@ -20,12 +20,7 @@ class _HomeState extends State<Home> {
 
   void initState() {
     super.initState();
-    _events = EventService.getEvents().then((value) {
-      setState(() {
-        events = value;
-      });
-      return value;
-    });
+    _events = EventService.getEvents();
   }
 
   @override
@@ -155,7 +150,7 @@ class _HomeState extends State<Home> {
                                   sigmaX: 8.0,
                                   sigmaY: 8.0,
                                 ),
-                                child: CreatedEventInfo(id: events[index].id),
+                                child: CreatedEventInfo(id: events[index].id ?? ''),
                               )
                           );
                         },
@@ -180,7 +175,7 @@ class _HomeState extends State<Home> {
                                   _currentPage = page;
                                 });
                               },
-                              children: events[index].photoUrls.map((imageUrls) {
+                              children: events[index].photoUrls!.map((imageUrls) {
                                 return Image.asset(
                                   imageUrls,
                                   height: 10.0,
@@ -198,7 +193,7 @@ class _HomeState extends State<Home> {
                               right: 0,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: events[index].photoUrls.asMap().entries.map((entry) {
+                                children: events[index].photoUrls!.asMap().entries.map((entry) {
                                   return Container(
                                     width: 8.0,
                                     height: 8.0,
@@ -223,12 +218,12 @@ class _HomeState extends State<Home> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                events[index].location,
+                                events[index].location ?? '',
                                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.bold),
                               ),
                               const SizedBox(height: 4.0),
                               Text(
-                                events[index].title,
+                                events[index].title ?? '',
                                 style: Theme.of(context).textTheme.bodyMedium,
                               ),
                               const SizedBox(height: 4.0),
