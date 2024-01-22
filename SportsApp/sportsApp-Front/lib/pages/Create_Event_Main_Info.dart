@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sports_app/widgets/Providers.dart';
+import 'package:sports_app/entities/Event.dart';
+import '../services/BackEndService.dart';
 
 class EventInfo extends StatefulWidget {
   const EventInfo({super.key});
@@ -110,9 +114,15 @@ class _EventInfoState extends State<EventInfo> {
         child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
           TextButton(
             onPressed: () {
+              // Get the EventProvider instance
+              EventProvider eventProvider =
+              Provider.of<EventProvider>(context, listen: false);
 
+              // Update the event data
+              eventProvider.updateEventMainInfo(_dateController.text,_startTime.text,_endTime.text,_priceController.text,_locationController.text);
+
+              // Navigate to the next screen
               Navigator.pushNamed(context, '/create_event_load_photos');
-
             },
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(Colors.black),

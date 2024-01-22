@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import '../entities/Categorytypeslist.dart';
-import '../services/EventsService.dart';
-import 'package:sports_app/entities/LoadedPhotoslist.dart';
+import 'package:provider/provider.dart';
+import 'package:sports_app/widgets/Providers.dart';
+import 'package:sports_app/entities/Event.dart';
+import 'package:sports_app/entities/Categorietypes.dart';
+import '../services/BackEndService.dart';
 
 class SelectEventCategory extends StatefulWidget {
   const SelectEventCategory({Key? key}) : super(key: key);
@@ -11,13 +13,14 @@ class SelectEventCategory extends StatefulWidget {
 }
 
 class _SelectEventCategoryState extends State<SelectEventCategory> {
-  late List<Map<String, dynamic>> categoryTypes;
+  Category? selectedCategory;
+  List<Category> categories = [];
+  late Future<List<Category>> _categories;
+  int _currentPage = 0;
 
-  @override
   void initState() {
     super.initState();
-    // Initialize categoryTypes with the data from CategoryTypes list
-    categoryTypes = CategoryTypesList as List<Map<String, dynamic>>;
+    _categories = EventService.getCategoryData();
   }
 
   @override
@@ -83,74 +86,94 @@ class _SelectEventCategoryState extends State<SelectEventCategory> {
           ),
         ),
       ),
-      body: GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2, // Number of columns in the grid
-          crossAxisSpacing: 16.0, // Spacing between columns
-          mainAxisSpacing: 16.0, // Spacing between rows
-        ),
-        itemCount: categoryTypes.length,
-        itemBuilder: (BuildContext context, int index) {
-          return GestureDetector(
-            onTap: () {
-              // Handle category item tap
-              print(
-                  'Selected category: ${categoryTypes[index]["name"]}'); // Access category name
-              // Add navigation or other actions based on the selected category
-            },
-            child: Card(
-              elevation: 2.0,
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      categoryTypes[index]["icon"],
-                      size: 50.0,
-                      color: Colors.blue, // Change color as needed
-                    ),
-                    SizedBox(height: 8.0),
-                    Text(
-                      categoryTypes[index]["type"],
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.bold,
+      body: FutureBuilder<List<Category>>(
+        future: _categories,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return CircularProgressIndicator();
+          } else if (snapshot.hasError) {
+            return Text('Error: ${snapshot.error}');
+          } else {
+            List<Category> categories = snapshot.data!;
+            selectedCategory = categories[_currentPage];
+            return GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 16.0,
+                mainAxisSpacing: 16.0,
+              ),
+              itemCount: categories.length,
+              itemBuilder: (BuildContext context, int index) {
+                return GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      selectedCategory = categories[index];
+                      _currentPage = index;
+                    });
+                  },
+                  child: Card(
+                    elevation: 2.0,
+                    color: selectedCategory == categories[index] ? Colors.blue : Colors.white,
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            categories[index].icon,
+                            style: TextStyle(
+                              fontSize: 50.0,
+                              color: Colors.black,
+                            ),
+                          ),
+                          SizedBox(height: 8.0),
+                          Text(
+                            categories[index].name,
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
-              ),
-            ),
-          );
+                  ),
+                );
+              },
+            );
+          }
         },
       ),
       bottomNavigationBar: Container(
         color: Colors.black,
         padding: EdgeInsets.symmetric(horizontal: 16.0),
-        child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-          TextButton(
-            onPressed: () {
-
-              Navigator.pushNamed(context, '/create_event_main_info');
-
-            },
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
-              foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-              padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            TextButton(
+              onPressed: () {
+                EventProvider eventProvider = Provider.of<EventProvider>(context, listen: false);
+                eventProvider.updateCategoryInfo(selectedCategory!.name);
+                Navigator.pushNamed(context, '/create_event_main_info');
+              },
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                  EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+                ),
+              ),
+              child: Text(
+                'Next',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16.0,
+                ),
               ),
             ),
-            child: Text(
-              'Next',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16.0,
-              ),
-            ),
-          ),
-        ]),
+          ],
+        ),
       ),
     );
   }
 }
+

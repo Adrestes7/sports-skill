@@ -39,6 +39,7 @@ dependencies:
   shared_preferences:
   jwt_decoder:
 
+  provider: ^5.0.0
 
 
 

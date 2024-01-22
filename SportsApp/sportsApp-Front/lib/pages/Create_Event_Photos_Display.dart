@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_reorderable_list/flutter_reorderable_list.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:sports_app/entities/LoadedPhotoslist.dart';
+import 'package:provider/provider.dart';
+import 'package:sports_app/entities/Event.dart';
+import 'package:sports_app/widgets/Providers.dart';
 
 class CreateEventPhotosDisplay extends StatefulWidget {
   const CreateEventPhotosDisplay({Key? key}) : super(key: key);
 
   @override
-  State<CreateEventPhotosDisplay> createState() => _CreateEventPhotosDisplayState();
+  State<CreateEventPhotosDisplay> createState() =>
+      _CreateEventPhotosDisplayState();
 }
 
 class _CreateEventPhotosDisplayState extends State<CreateEventPhotosDisplay> {
-  final ImagePicker _picker = ImagePicker();
   List<String> _reorderedPhotos = [];
 
   @override
@@ -21,33 +22,33 @@ class _CreateEventPhotosDisplayState extends State<CreateEventPhotosDisplay> {
         title: Text('Selected Photos'),
       ),
       body: _buildReorderableList(),
-
       bottomNavigationBar: Container(
         color: Colors.black,
         padding: EdgeInsets.symmetric(horizontal: 16.0),
-        child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-          TextButton(
-            onPressed: () {
-
-              Navigator.pushNamed(context, '/create_event_add_title');
-
-            },
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
-              foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-              padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/create_event_add_title');
+              },
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                  EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+                ),
+              ),
+              child: Text(
+                'Next',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16.0,
+                ),
               ),
             ),
-            child: Text(
-              'Next',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16.0,
-              ),
-            ),
-          ),
-        ]),
+          ],
+        ),
       ),
     );
   }
@@ -61,6 +62,11 @@ class _CreateEventPhotosDisplayState extends State<CreateEventPhotosDisplay> {
           }
           final String movedItem = _reorderedPhotos.removeAt(oldIndex);
           _reorderedPhotos.insert(newIndex, movedItem);
+
+          // Update the order in the provider
+          EventProvider eventProvider =
+          Provider.of<EventProvider>(context, listen: false);
+          eventProvider.updatePhotoOrder(_reorderedPhotos);
         });
       },
       children: _reorderedPhotos
@@ -83,7 +89,7 @@ class _CreateEventPhotosDisplayState extends State<CreateEventPhotosDisplay> {
       ),
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
-      itemCount: 1, // Display only one image in the ListTile
+      itemCount: 1,
       itemBuilder: (context, index) {
         return Image.network(
           imageUrl,
@@ -93,15 +99,15 @@ class _CreateEventPhotosDisplayState extends State<CreateEventPhotosDisplay> {
     );
   }
 
-
-
   @override
   void initState() {
     super.initState();
-    // Assuming LoadedPhotoslist is a List<String> containing image URLs
-    _reorderedPhotos = LoadedPhotoslist.toList();
+    EventProvider eventProvider =
+    Provider.of<EventProvider>(context, listen: false);
+    _reorderedPhotos = eventProvider.event!.photoUrls!.toList();
   }
 }
+
 
 
 
