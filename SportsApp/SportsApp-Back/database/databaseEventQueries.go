@@ -50,8 +50,8 @@ func GetEvents(ctx context.Context) []models.Event {
 
 func CreateEvent(ctx context.Context, event models.Event) error {
 	sqlStatement := `INSERT INTO sportskillschema.events(
-		category, subcategory, date, starttime, endtime, price, numberofpersons, address, title, description, photourls, city, country, mainphotourl) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)`
+		id,category, subcategory, date, starttime, endtime, price, numberofpersons, address, title, description, photourls, city, country, mainphotourl) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)`
 
-	_, err := DB.Exec(sqlStatement, event.Category, event.Subcategory, event.Date, event.StartTime, event.EndTime, event.Price, event.NumberOfPersons, event.Address, event.Title, event.Description, event.PhotoUrls, event.City, event.Country, event.MainPhotoUrl)
+	_, err := DB.Exec(sqlStatement, event.Id, event.Category, event.Subcategory, event.Date, event.StartTime, event.EndTime, event.Price, event.NumberOfPersons, event.Address, event.Title, event.Description, event.PhotoUrls, event.City, event.Country, event.MainPhotoUrl)
 	return err
 }

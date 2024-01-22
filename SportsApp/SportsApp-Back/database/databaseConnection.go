@@ -3,16 +3,19 @@ package database
 import (
 	"database/sql"
 	"fmt"
+	"os"
 
+	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
 )
 
 var DB *sql.DB = DBinstance()
 
 func DBinstance() *sql.DB {
+	err := godotenv.Load(".env")
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
 		"password=%s dbname=%s sslmode=require",
-		"sports-skill.czke2wiuefcl.us-east-1.rds.amazonaws.com", 5432, "sportsSkillDB", "43H)<gGgTd#j:[G8UQME6$I4M3rD", "SportsSkill")
+		os.Getenv("DB_HOST"), 5432, os.Getenv("DB_USERNAME"), os.Getenv("DB_PASSWORD"), "SportsSkill")
 
 	db, err := sql.Open("postgres", psqlInfo)
 	if err != nil {

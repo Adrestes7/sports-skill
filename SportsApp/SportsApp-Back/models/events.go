@@ -3,9 +3,9 @@ package models
 import "github.com/lib/pq"
 
 type Event struct {
-	Id              string         `json:"id"`
-	Category        string         `json:"category"`
-	Subcategory     string         `json:"subcategory"`
+	Id              string         `json:"id" form:"id"`
+	Category        string         `json:"category" form:"category"`
+	Subcategory     string         `json:"subcategory" form:"subcategory"`
 	Date            string         `json:"date"`
 	StartTime       string         `json:"startTime"`
 	EndTime         string         `json:"endTime"`
