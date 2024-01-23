@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sports_app/widgets/Providers.dart';
+import 'package:sports_app/entities/Event.dart';
+import '../services/BackEndService.dart';
 
 class EventInfo extends StatefulWidget {
   const EventInfo({super.key});
@@ -13,9 +17,11 @@ class _EventInfoState extends State<EventInfo> {
   TextEditingController _dateController = TextEditingController();
   TextEditingController _priceController = TextEditingController();
   TextEditingController _locationController = TextEditingController();
+  String _subCategoryController = "";
+
   @override
   Widget build(BuildContext context) {
-    List<String> subCategories = ["fut5", "fut7"];
+    List<String> subCategories = ["fulbo7"];
     return Scaffold(
       body: Form(
         child: Column(
@@ -100,28 +106,36 @@ class _EventInfoState extends State<EventInfo> {
                     child: Text(subCategory),
                   );
                 }).toList(),
-                onChanged: (value) {})
+                onChanged: (value) {
+                  _subCategoryController = value!;
+                })
           ],
         ),
       ),
       bottomNavigationBar: Container(
         color: Colors.black,
-        padding: EdgeInsets.symmetric(horizontal: 16.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
           TextButton(
             onPressed: () {
+              // Get the EventProvider instance
+              EventProvider eventProvider =
+              Provider.of<EventProvider>(context, listen: false);
 
+              // Update the event data
+              eventProvider.updateEventMainInfo(_dateController.text,_startTime.text,_endTime.text,_priceController.text,_locationController.text, _subCategoryController);
+
+              // Navigate to the next screen
               Navigator.pushNamed(context, '/create_event_load_photos');
-
             },
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
               foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
               padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+                const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
               ),
             ),
-            child: Text(
+            child: const Text(
               'Next',
               style: TextStyle(
                 color: Colors.white,

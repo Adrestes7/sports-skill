@@ -16,7 +16,7 @@ class _AppViewState extends State<AppView> {
   int _currentIndex = 0;
   final List<Widget> tabs = [
     Home(),
-    ViewProfilePage(id: '1'),
+    ViewProfilePage(),
     CreateEvent()
     //Screen(), // Pending to add User events and chat with communities, we need the user
   ];

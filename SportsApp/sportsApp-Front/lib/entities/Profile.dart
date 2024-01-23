@@ -1,4 +1,4 @@
-import 'package:sports_app/entities/Feedback.dart';
+
 import 'package:sports_app/entities/Sport.dart';
 
 class Profile{
@@ -18,9 +18,7 @@ class Profile{
     List<Sport> sports = [];
     List<dynamic> jsonSports = data["sports"];
     for(var jsonSport in jsonSports){
-      Map jsonFeedback = jsonSport["feedback"];
-      Feedback feedback = Feedback(jsonFeedback["grade"], jsonFeedback["numberOfPersons"]);
-      Sport sport = Sport(jsonSport["sportName"], jsonSport["userGrade"], feedback);
+      Sport sport = Sport(jsonSport["sportName"], jsonSport["userGrade"], jsonSport["feedbackGrade"], jsonSport["numberOfPersons"]);
       sports.add(sport);
     }
     return Profile(data["id"], data["name"], data["lastName"], data["age"], data["address"], sports, data["photoPath"], data["email"]);

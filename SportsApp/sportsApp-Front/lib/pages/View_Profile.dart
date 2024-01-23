@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:sports_app/entities/Profile.dart';
 import 'package:sports_app/services/EventsService.dart';
+import 'package:sports_app/services/LocalStorage.dart';
 
 class ViewProfilePage extends StatefulWidget {
-  final String id;
 
-  const ViewProfilePage({super.key, required this.id});
+  const ViewProfilePage({super.key});
 
   @override
   State<ViewProfilePage> createState() => Profile_State();
@@ -16,7 +17,10 @@ class Profile_State extends State<ViewProfilePage> {
 
   @override
   void initState() {
-    _profile = EventService.getProfileData(widget.id);
+    //String? serializedToken = LocalStorage.prefs.getString("token");
+    //Map<String, dynamic> jwtDecodedToken = JwtDecoder.decode(serializedToken!);
+    //String id = jwtDecodedToken["Uid"];
+    _profile = EventService.getProfileData('1');
   }
 
   @override
@@ -127,7 +131,7 @@ class Profile_State extends State<ViewProfilePage> {
                                               fontFamily: "MaterialIcons")),
                                           Text(profile.sports[index].sportName),
                                           Text("Calificación del usuario: ${profile.sports[index].userGrade}"),
-                                          Text("Calificación de la comunidad: ${profile.sports[index].feedback.grade}"),
+                                          Text("Calificación de la comunidad: ${profile.sports[index].feedbackGrade}"),
                                         ],
                                       ),
                                     ],

@@ -13,6 +13,6 @@ type UserModel struct {
 	UserType     string    `json:"userType"`
 	RefreshToken string    `json:"refreshToken"`
 	CreatedAt    time.Time `json:"createdAt"`
-	Updated_at   time.Time `json:"updatedAt"`
+	UpdatedAt    time.Time `json:"updatedAt"`
 	User_id      string    `json:"userId"`
 }
