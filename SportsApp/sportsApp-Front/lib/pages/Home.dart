@@ -150,7 +150,7 @@ class _HomeState extends State<Home> {
                                   sigmaX: 8.0,
                                   sigmaY: 8.0,
                                 ),
-                                child: CreatedEventInfo(id: events[index].id ?? ''),
+                                child: CreatedEventInfo(id: events[index].id.toString() ?? ''),
                               )
                           );
                         },
@@ -176,15 +176,17 @@ class _HomeState extends State<Home> {
                                 });
                               },
                               children: events[index].photoUrls!.map((imageUrls) {
-                                return Image.asset(
+                                return Image.network(
+                                    imageUrls
+                                );
+                                /*return Image.asset(
                                   imageUrls,
                                   height: 10.0,
                                   width: 10.0,
                                   fit: BoxFit.cover,
                                   errorBuilder: (context, error, stackTrace) {
                                     return Placeholder(); // Display a placeholder image or error message
-                                  },
-                                );
+                                  },*/
                               }).toList(),
                             ),
                             Positioned(

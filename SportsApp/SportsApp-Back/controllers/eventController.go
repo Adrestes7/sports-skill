@@ -30,8 +30,26 @@ func GetEvents() gin.HandlerFunc {
 	}
 }
 
+func GetSubCategories() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		categoryName := c.Param("category_name")
+		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
+		subcategories, err := database.GetSubCategories(ctx, categoryName)
+		defer cancel()
+
+		if err != nil {
+			log.Panic("there was an error loading subcategories")
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			return
+		}
+
+		c.IndentedJSON(http.StatusOK, subcategories)
+	}
+}
+
 func CreateEvent() gin.HandlerFunc {
 	return func(c *gin.Context) {
+
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 
 		var creaTeEvent models.CreateEvent
@@ -44,6 +62,7 @@ func CreateEvent() gin.HandlerFunc {
 		if err != nil {
 			log.Panic("there was an error with s3")
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			return
 		}
 
 		creaTeEvent.Event.PhotoUrls = photoUrls
@@ -53,6 +72,7 @@ func CreateEvent() gin.HandlerFunc {
 		if err != nil {
 			log.Panic(err)
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			return
 		}
 		c.IndentedJSON(http.StatusCreated, "event created successfully")
 	}

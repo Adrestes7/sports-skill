@@ -17,10 +17,10 @@ class Profile_State extends State<ViewProfilePage> {
 
   @override
   void initState() {
-    String? serializedToken = LocalStorage.prefs.getString("token");
-    Map<String, dynamic> jwtDecodedToken = JwtDecoder.decode(serializedToken!);
-    String id = jwtDecodedToken["Uid"];
-    _profile = EventService.getProfileData(id);
+    //String? serializedToken = LocalStorage.prefs.getString("token");
+    //Map<String, dynamic> jwtDecodedToken = JwtDecoder.decode(serializedToken!);
+    //String id = jwtDecodedToken["Uid"];
+    _profile = EventService.getProfileData('1');
   }
 
   @override

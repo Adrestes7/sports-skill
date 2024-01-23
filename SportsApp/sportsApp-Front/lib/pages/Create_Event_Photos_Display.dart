@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:flutter_reorderable_list/flutter_reorderable_list.dart';
 import 'package:provider/provider.dart';
 import 'package:sports_app/entities/Event.dart';
 import 'package:sports_app/widgets/Providers.dart';
-
+/*
 class CreateEventPhotosDisplay extends StatefulWidget {
   const CreateEventPhotosDisplay({Key? key}) : super(key: key);
 
@@ -13,7 +14,7 @@ class CreateEventPhotosDisplay extends StatefulWidget {
 }
 
 class _CreateEventPhotosDisplayState extends State<CreateEventPhotosDisplay> {
-  List<String> _reorderedPhotos = [];
+  late XFile file;
 
   @override
   Widget build(BuildContext context) {
@@ -60,16 +61,16 @@ class _CreateEventPhotosDisplayState extends State<CreateEventPhotosDisplay> {
           if (oldIndex < newIndex) {
             newIndex -= 1;
           }
-          final String movedItem = _reorderedPhotos.removeAt(oldIndex);
-          _reorderedPhotos.insert(newIndex, movedItem);
+          //final String movedItem = _reorderedPhotos.removeAt(oldIndex);
+          //_reorderedPhotos.insert(newIndex, movedItem);
 
           // Update the order in the provider
           EventProvider eventProvider =
           Provider.of<EventProvider>(context, listen: false);
-          eventProvider.updatePhotoOrder(_reorderedPhotos);
+          //eventProvider.updatePhotoOrder(_reorderedPhotos);
         });
       },
-      children: _reorderedPhotos
+      //children: _reorderedPhotos
           .map(
             (imageUrl) => ListTile(
           key: ValueKey(imageUrl),
@@ -104,10 +105,10 @@ class _CreateEventPhotosDisplayState extends State<CreateEventPhotosDisplay> {
     super.initState();
     EventProvider eventProvider =
     Provider.of<EventProvider>(context, listen: false);
-    _reorderedPhotos = eventProvider.event!.photoUrls!.toList();
+    file = eventProvider.file;
   }
 }
-
+*/
 
 
 

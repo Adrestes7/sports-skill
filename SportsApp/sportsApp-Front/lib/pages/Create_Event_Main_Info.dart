@@ -17,9 +17,11 @@ class _EventInfoState extends State<EventInfo> {
   TextEditingController _dateController = TextEditingController();
   TextEditingController _priceController = TextEditingController();
   TextEditingController _locationController = TextEditingController();
+  String _subCategoryController = "";
+
   @override
   Widget build(BuildContext context) {
-    List<String> subCategories = ["fut5", "fut7"];
+    List<String> subCategories = ["fulbo7"];
     return Scaffold(
       body: Form(
         child: Column(
@@ -104,7 +106,9 @@ class _EventInfoState extends State<EventInfo> {
                     child: Text(subCategory),
                   );
                 }).toList(),
-                onChanged: (value) {})
+                onChanged: (value) {
+                  _subCategoryController = value!;
+                })
           ],
         ),
       ),
@@ -119,7 +123,7 @@ class _EventInfoState extends State<EventInfo> {
               Provider.of<EventProvider>(context, listen: false);
 
               // Update the event data
-              eventProvider.updateEventMainInfo(_dateController.text,_startTime.text,_endTime.text,_priceController.text,_locationController.text);
+              eventProvider.updateEventMainInfo(_dateController.text,_startTime.text,_endTime.text,_priceController.text,_locationController.text, _subCategoryController);
 
               // Navigate to the next screen
               Navigator.pushNamed(context, '/create_event_load_photos');

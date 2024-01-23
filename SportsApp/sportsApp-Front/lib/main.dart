@@ -59,13 +59,13 @@ class MyApp extends StatelessWidget {
         // Search and Book Events Flow
         '/created_event_info': (context) => CreatedEventInfo(id: '1',),
         // Profile Flow
-        '/view_profile': (context) => ViewProfilePage(id: '1',),
+        '/view_profile': (context) => ViewProfilePage(),
         // Create Event Flow
         '/create_event_instructions': (context) => CreateEvent(),
         '/create_event_select_category': (context) => SelectEventCategory(),
         '/create_event_main_info': (context) => EventInfo(),
         '/create_event_load_photos' : (context) => CreateEventLoadPhotos(),
-        '/create_event_photos_display' : (context) => CreateEventPhotosDisplay (),
+        //'/create_event_photos_display' : (context) => CreateEventPhotosDisplay (),
         '/create_event_add_title' : (context) => CreateEventAddTitle (),
         // User Activity Flow (review and adjust current created and booked events)
         '/activity_review_events' : (context) => ActivityReviewEvents (),

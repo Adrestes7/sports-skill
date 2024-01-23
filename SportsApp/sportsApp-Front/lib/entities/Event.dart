@@ -1,3 +1,5 @@
+import 'package:uuid/uuid.dart';
+
 class Event {
 
   String? id;
@@ -35,20 +37,20 @@ class Event {
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
-      'category': category,
-      'subCategory': subCategory,
-      'date': date,
-      'startTime': startTime,
-      'endTime': endTime,
-      'price': price,
-      'numberOfPersons': numberOfPersons,
-      'address': location,
-      'country': country,
-      'city': city,
-      'title': title,
-      'description': description,
-      'photoUrls': photoUrls,
+      'id': id ?? "",
+      'category': category ?? "",
+      'subCategory': subCategory ?? "",
+      'date': date ?? "",
+      'startTime': startTime ?? "",
+      'endTime': endTime ?? "",
+      'price': price ?? "",
+      'numberOfPersons': numberOfPersons ?? "",
+      'address': location ?? "",
+      'country': country ?? "",
+      'city': city ?? "",
+      'title': title ?? "",
+      'description': description ?? "",
+      'photoUrls': photoUrls ?? [],
     };
   }
 

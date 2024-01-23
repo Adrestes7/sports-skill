@@ -6,6 +6,8 @@ import 'package:sports_app/entities/Event.dart';
 import 'package:sports_app/entities/Profile.dart';
 import 'package:sports_app/utilities/FromJsonConverter.dart';
 
+import 'LocalStorage.dart';
+
 class EventService {
 
   static Future<List<Event>> getHomeData() async {
@@ -28,7 +30,7 @@ class EventService {
 
   static Future<List<Category>> getCategoryData() async{
     List<Category> categories =[];
-    Response response = await get(Uri.parse("https://7cadcbfc-005c-4480-89e1-93f478e35874.mock.pstmn.io/category"));
+    Response response = await get(Uri.http("10.0.2.2:5000", "/category"));
     Map data = jsonDecode(response.body);
     List<dynamic> jsonCategories = data["categories"];
     for (var category in jsonCategories)
@@ -38,7 +40,7 @@ class EventService {
 
   static Future<Profile> getProfileData(String id) async{
     Response response = await get(Uri.parse("http://10.0.2.2:5000/profile/$id"),headers: <String, String>{
-      'token': LocalStorage.prefs.getString("token")!
+      //'token': LocalStorage.prefs.getString("token")!
     });
     Map data = jsonDecode(response.body);
     return Profile.fromJson(data);

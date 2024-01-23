@@ -55,3 +55,21 @@ func CreateEvent(ctx context.Context, event models.Event) error {
 	_, err := DB.Exec(sqlStatement, event.Id, event.Category, event.Subcategory, event.Date, event.StartTime, event.EndTime, event.Price, event.NumberOfPersons, event.Address, event.Title, event.Description, event.PhotoUrls, event.City, event.Country, event.MainPhotoUrl)
 	return err
 }
+
+func GetSubCategories(ctx context.Context, category string) ([]string, error) {
+	sqlStatement := `select name from sportskillschema.subcategory where category_name = $1`
+	rows, err := DB.QueryContext(ctx, sqlStatement, category)
+	defer rows.Close()
+	var subcategories []string
+
+	for rows.Next() {
+		var subcategory string
+		err = rows.Scan(&subcategory)
+		if err != nil {
+			log.Panic(err)
+		}
+		subcategories = append(subcategories, subcategory)
+	}
+
+	return subcategories, err
+}

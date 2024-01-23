@@ -71,7 +71,7 @@ class _Onboard_Sign_In_TapState extends State<Onboard_Sign_In_Tap> {
                       if (_formKey.currentState!.validate()) {
                         EventService.userLogin(emailController.text, passwordController.text).then((response) {
                           Map<String, dynamic> jsonData = jsonDecode(response.body);
-                          LocalStorage.prefs.setString("token", jsonData["token"]);
+                          //LocalStorage.prefs.setString("token", jsonData["token"]);
                           Navigator.pushNamed(context, '/');
                         });
                       } else {

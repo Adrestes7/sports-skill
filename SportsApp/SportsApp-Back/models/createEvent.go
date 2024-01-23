@@ -5,6 +5,6 @@ import (
 )
 
 type CreateEvent struct {
-	Image []*multipart.FileHeader `form:"file"`
 	Event Event                   `form:"eventInfo"`
+	Image []*multipart.FileHeader `form:"file"`
 }

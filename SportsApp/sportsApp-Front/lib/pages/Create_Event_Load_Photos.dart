@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+import 'package:sports_app/entities/Event.dart';
 import 'package:sports_app/widgets/Providers.dart';
 
 class CreateEventLoadPhotos extends StatefulWidget {
@@ -11,23 +12,31 @@ class CreateEventLoadPhotos extends StatefulWidget {
 }
 
 class _CreateEventLoadPhotosState extends State<CreateEventLoadPhotos> {
+
+  final ImagePicker imagePicker = ImagePicker();
+  List<XFile>? imageFileList = [];
   Future<void> takeNewPhoto() async {
     final pickedFile = await ImagePicker().getImage(source: ImageSource.camera);
 
     if (pickedFile != null) {
-      String photoPath = pickedFile.path;
-      Provider.of<EventProvider>(context, listen: false).addPhoto(photoPath);
+      //Provider.of<EventProvider>(context, listen: false).addPhoto(pickedFile);
     }
   }
 
   Future<void> pickImageFromLibrary() async {
-    final pickedFile = await ImagePicker().getImage(source: ImageSource.gallery);
+    final List<XFile> selectedImages = await imagePicker.pickMultiImage();
+    if (selectedImages!.isNotEmpty) {
+      imageFileList!.addAll(selectedImages);
+    }
+    Provider.of<EventProvider>(context, listen: false).addPhoto(imageFileList!);
+    /*
+    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
 
     if (pickedFile != null) {
 
       String photoPath = pickedFile.path;
-      Provider.of<EventProvider>(context, listen: false).addPhoto(photoPath);
-    }
+      Provider.of<EventProvider>(context, listen: false).addPhoto(pickedFile);
+    }*/
   }
 
   @override
@@ -94,7 +103,7 @@ class _CreateEventLoadPhotosState extends State<CreateEventLoadPhotos> {
           TextButton(
             onPressed: () {
 
-              Navigator.pushNamed(context, '/create_event_photos_display');
+              Navigator.pushNamed(context, '/create_event_add_title');
 
             },
             style: ButtonStyle(

@@ -41,7 +41,7 @@ class _CreateEventAddTitleState extends State<CreateEventAddTitle> {
                   _descriptionController.text,
                 );
 
-                await EventService.sendEvent(eventProvider.event);
+                await EventService.sendEvent(eventProvider.event!, eventProvider.files);
 
                 Navigator.pushNamed(context, '/');
               },

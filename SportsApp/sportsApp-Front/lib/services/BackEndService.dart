@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:http/http.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:sports_app/entities/Event.dart';
 import 'package:sports_app/entities/Categorietypes.dart';
 import 'package:provider/provider.dart';
@@ -41,7 +43,7 @@ class EventService {
   }
   static Future<List<Category>> getCategoryData() async{
     List <Category> categories = [];
-    Response response = await get(Uri.http('sportsapp-back-dev.us-east-1.elasticbeanstalk.com', '/category'));
+    Response response = await get(Uri.http('10.0.2.2:5000', '/category'));
     if (response.statusCode == 200) {
       List <dynamic> jsonEvents = jsonDecode(response.body);
       jsonEvents.forEach((category) => categories.add (Category.fromJson(category)));
@@ -57,14 +59,17 @@ class EventService {
 
   final String apiUrl = 'https://sportsapp-back-dev.us-east-1.elasticbeanstalk.com';
 
-  static Future<void> sendEvent(Event? _event) async {
-    final response = await post(
-      (Uri.http('sportsapp-back-dev.us-east-1.elasticbeanstalk.com', '/events')),
-      headers: {'Content-Type': 'application/json'},
-      body: jsonEncode(_event?.toJson()), // Assuming toJson is a method in your Event class
-    );
+  static Future<void> sendEvent(Event event, List<XFile> files) async {
 
-    if (response.statusCode == 200) {
+    var request = MultipartRequest('POST', Uri.http("10.0.2.2:5000", "/event"));
+    for(var i = 0; i<files.length; i++){
+      request.files.add(await MultipartFile.fromPath('file', files[0].path));
+    }
+    request.fields["eventInfo"] = jsonEncode(event);
+
+    var response = await request.send();
+
+    if (response.statusCode == 201) {
       print('Event sent successfully');
     } else {
       print('Failed to send event. Status code: ${response.statusCode}');
