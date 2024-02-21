@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sports_app/widgets/Providers.dart';
-import 'package:sports_app/services/BackEndService.dart';
+import 'package:sports_app/services/EventsService.dart';
 import 'package:sports_app/entities/Event.dart';
 import 'package:sports_app/pages/Create_Event_Main_Info.dart';
 

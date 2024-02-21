@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sports_app/widgets/Providers.dart';
 import 'package:sports_app/entities/Event.dart';
-import '../services/BackEndService.dart';
+import '../services/UsersService.dart';
 
 class EventInfo extends StatefulWidget {
   const EventInfo({super.key});

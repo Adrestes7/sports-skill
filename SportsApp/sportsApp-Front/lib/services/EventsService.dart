@@ -5,28 +5,25 @@ import 'dart:convert';
 import 'package:sports_app/entities/Event.dart';
 import 'package:sports_app/entities/Profile.dart';
 import 'package:sports_app/utilities/FromJsonConverter.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'LocalStorage.dart';
 
 class EventService {
 
-  static Future<List<Event>> getHomeData() async {
-    List<Event> events = [];
-    try{
-      Response response = await get(Uri.http('10.0.2.2', '/events'));
-      List<dynamic> jsonEvents = jsonDecode(response.body);
-      jsonEvents.map((e) => {
-        events.add(FromJsonConverter.newEventfromJson(e))
-      });
-      jsonEvents.forEach((element) {
-        events.add(FromJsonConverter.newEventfromJson(element));
-      });
-      return events;
-    } on Exception catch(e){
-      print(e);
-      return events;
+  static Future<List<Event>> getEvents() async {
+    List <Event> events = [];
+    Response response = await get(Uri.http('10.0.2.2:5000', '/events'));
+    if (response.statusCode == 200) {
+      List <dynamic> jsonEvents = jsonDecode(response.body);
+      jsonEvents.forEach((event) => events.add (FromJsonConverter.newEventfromJson(event)));
+
+      return events;}
+    else {
+      throw Exception('Failed to load events');
     }
   }
+
 
   static Future<List<Category>> getCategoryData() async{
     List<Category> categories =[];
@@ -38,16 +35,8 @@ class EventService {
     return categories;
   }
 
-  static Future<Profile> getProfileData(String id) async{
-    Response response = await get(Uri.parse("http://10.0.2.2:5000/profile/$id"),headers: <String, String>{
-      //'token': LocalStorage.prefs.getString("token")!
-    });
-    Map data = jsonDecode(response.body);
-    return Profile.fromJson(data);
-  }
-
   static Future<Event> getEventById(String id) async{
-  Response response = await get(Uri.parse("https://06bf3054-c005-401c-956b-c3c6d658775e.mock.pstmn.io/events/$id"));
+  Response response = await get(Uri.parse("http://10.0.2.2:5000/event/$id"));
   Map data = jsonDecode(response.body);
   return FromJsonConverter.newEventfromJson(data);
   }
@@ -65,6 +54,24 @@ class EventService {
     );
 
     return response;
+  }
+
+  static Future<void> sendEvent(Event event, List<XFile> files) async {
+
+    var request = MultipartRequest('POST', Uri.http("10.0.2.2:5000", "/event"));
+    for(var i = 0; i<files.length; i++){
+      request.files.add(await MultipartFile.fromPath('file', files[0].path));
+    }
+    request.fields["eventInfo"] = jsonEncode(event);
+
+    var response = await request.send();
+
+    if (response.statusCode == 201) {
+      print('Event sent successfully');
+    } else {
+      print('Failed to send event. Status code: ${response.statusCode}');
+      throw Exception('Failed to send event');
+    }
   }
 }
 
