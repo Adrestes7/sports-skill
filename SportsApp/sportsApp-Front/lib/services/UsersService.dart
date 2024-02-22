@@ -2,16 +2,6 @@ import 'dart:convert';
 
 import 'package:http/http.dart';
 
-import 'dart:io';
-import 'package:http/http.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:sports_app/entities/Event.dart';
-import 'package:sports_app/entities/Categorietypes.dart';
-import 'package:provider/provider.dart';
-import 'package:sports_app/utilities/FromJsonConverter.dart';
-import 'package:sports_app/widgets/Providers.dart';
-
-
 import '../entities/Profile.dart';
 
 

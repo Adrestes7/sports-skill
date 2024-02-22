@@ -2,12 +2,9 @@ import 'package:http/http.dart';
 import 'package:sports_app/entities/Categorietypes.dart';
 import 'dart:convert';
 import 'package:sports_app/entities/Event.dart';
-import 'package:sports_app/entities/Profile.dart';
 import 'package:sports_app/utilities/FromJsonConverter.dart';
 import 'package:image_picker/image_picker.dart';
 
-import 'package:sports_app/utilities/FromJsonConverter.dart';
-import 'package:image_picker/image_picker.dart';
 import 'LocalStorage.dart';
 
 class EventService {
@@ -59,6 +56,7 @@ class EventService {
       print('Failed to send event. Status code: ${response.statusCode}');
       throw Exception('Failed to send event');
     }
+  }
 
   static Future<int> subscribeToEvent(String userId, String eventId) async {
     Response response = await post(Uri.http('10.0.2.2:5000', '/event/user'),
@@ -70,21 +68,4 @@ class EventService {
     return response.statusCode;
   }
 
-  static Future<void> sendEvent(Event event, List<XFile> files) async {
-
-    var request = MultipartRequest('POST', Uri.http("10.0.2.2:5000", "/event"));
-    for(var i = 0; i<files.length; i++){
-      request.files.add(await MultipartFile.fromPath('file', files[0].path));
-    }
-    request.fields["eventInfo"] = jsonEncode(event);
-
-    var response = await request.send();
-
-    if (response.statusCode == 201) {
-      print('Event sent successfully');
-    } else {
-      print('Failed to send event. Status code: ${response.statusCode}');
-      throw Exception('Failed to send event');
-    }
-  }
 }

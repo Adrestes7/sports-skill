@@ -1,4 +1,6 @@
-
+.env
+*.bak
+*.exe
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
