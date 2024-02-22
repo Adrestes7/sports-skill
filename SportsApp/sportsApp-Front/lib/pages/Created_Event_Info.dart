@@ -30,11 +30,11 @@ class CreatedEventInfoState extends State<CreatedEventInfo> {
         future: _event,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             return Center(child: Text("Error: ${snapshot.error}"));
           } else if (!snapshot.hasData) {
-            return Center(child: Text("Event not found"));
+            return const Center(child: Text("Event not found"));
           } else {
             Event event = snapshot.data!;
             return Padding(
@@ -44,7 +44,7 @@ class CreatedEventInfoState extends State<CreatedEventInfo> {
                 children: [
                   Text(
                     'Title: ${event.title}',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 24.0,
                     ),
@@ -59,8 +59,28 @@ class CreatedEventInfoState extends State<CreatedEventInfo> {
                   Text('Price: ${event.price}'),
                   ElevatedButton(
                     onPressed: () {
-                      // Implement booking logic here
-                      // You can navigate to a booking screen or perform booking actions.
+                      showDialog(context: context,
+                          builder: (context) =>AlertDialog(
+                            title: Text("Estás seguro que deseas suscribirte a este evento?"),
+                            actions: [
+                              ElevatedButton(onPressed: (){
+                                EventService.subscribeToEvent("721b4207-3045-4b14-9284-00b2efbd5c7f", widget.id).then((value) => {
+                                  showDialog(context: context,
+                                      builder: (context) => const AlertDialog(
+                                        title: Text("Te has suscrito a este eveto con exito"),
+                                      ))
+                                }, onError: (e){
+                                  showDialog(context: context,
+                                      builder: (context) => const AlertDialog(
+                                        title: Text("Hubo un problema"),
+                                      ));
+                                });
+                              }, child: const Text("Si")),
+                              ElevatedButton(onPressed: (){
+                                Navigator.of(context).pop();
+                              }, child: const Text("No"))
+                            ],
+                          ));
                     },
                     child: Text('Book Event'),
                   ),

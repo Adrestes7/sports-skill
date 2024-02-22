@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:sports_app/entities/Profile.dart';
-import 'package:sports_app/services/EventsService.dart';
+import 'package:sports_app/services/UsersService.dart';
 import 'package:sports_app/services/LocalStorage.dart';
 
 class ViewProfilePage extends StatefulWidget {
@@ -20,7 +20,7 @@ class Profile_State extends State<ViewProfilePage> {
     //String? serializedToken = LocalStorage.prefs.getString("token");
     //Map<String, dynamic> jwtDecodedToken = JwtDecoder.decode(serializedToken!);
     //String id = jwtDecodedToken["Uid"];
-    _profile = EventService.getProfileData('1');
+    _profile = UserService.getProfileData("721b4207-3045-4b14-9284-00b2efbd5c7f");
   }
 
   @override

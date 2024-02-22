@@ -54,7 +54,8 @@ func CreateEvent() gin.HandlerFunc {
 
 		var creaTeEvent models.CreateEvent
 		if err := c.ShouldBind(&creaTeEvent); err != nil {
-			panic(err)
+			log.Panic(err)
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		}
 
 		photoUrls, err := bucket.PutImagesInBucket(c, creaTeEvent.Event.Id, creaTeEvent.Image)
@@ -75,5 +76,25 @@ func CreateEvent() gin.HandlerFunc {
 			return
 		}
 		c.IndentedJSON(http.StatusCreated, "event created successfully")
+	}
+}
+
+func SubscribeToEvent() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
+		var subscribeToEvent models.SubscribeToEvent
+		if err := c.ShouldBind(&subscribeToEvent); err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		}
+
+		err := database.SubscribeToEvent(ctx, subscribeToEvent)
+		defer cancel()
+
+		if err != nil {
+			log.Panic(err)
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			return
+		}
+		c.IndentedJSON(http.StatusCreated, "user subscribed to event successfully")
 	}
 }
