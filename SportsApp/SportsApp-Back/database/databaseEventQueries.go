@@ -2,6 +2,7 @@ package database
 
 import (
 	"context"
+	"database/sql"
 	"log"
 	"sportsapp-back/models"
 )
@@ -57,10 +58,14 @@ func CreateEvent(ctx context.Context, event models.Event) error {
 }
 
 func GetSubCategories(ctx context.Context, category string) ([]string, error) {
+	var subcategories []string
 	sqlStatement := `select name from sportskillschema.subcategory where category_name = $1`
 	rows, err := DB.QueryContext(ctx, sqlStatement, category)
+	if err != nil {
+		log.Panic("There was an error reading subcategories from database")
+		return subcategories, err
+	}
 	defer rows.Close()
-	var subcategories []string
 
 	for rows.Next() {
 		var subcategory string
@@ -71,7 +76,18 @@ func GetSubCategories(ctx context.Context, category string) ([]string, error) {
 		subcategories = append(subcategories, subcategory)
 	}
 
-	return subcategories, err
+	return subcategories, nil
+}
+
+func GetEventInfo(ctx context.Context, eventId string) (models.Event, error) {
+	var event models.Event
+	sqlStatement := `select * from sportskillschema.events where id = $1`
+	err := DB.QueryRowContext(ctx, sqlStatement, eventId).Scan(&event.Id, &event.Category, &event.Subcategory, &event.Date, &event.StartTime, &event.EndTime, &event.Price, &event.NumberOfPersons, &event.Address, &event.Title, &event.Description, &event.PhotoUrls, &event.City, &event.Country, &event.MainPhotoUrl)
+	if err == sql.ErrNoRows {
+		log.Panic("there is no event with that event_id")
+		return event, err
+	}
+	return event, nil
 }
 
 func SubscribeToEvent(ctx context.Context, subscribeToEvent models.SubscribeToEvent) error {

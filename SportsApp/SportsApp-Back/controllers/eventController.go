@@ -47,6 +47,22 @@ func GetSubCategories() gin.HandlerFunc {
 	}
 }
 
+func GetEventInfo() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		eventId := c.Param("event_id")
+		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
+		event, err := database.GetEventInfo(ctx, eventId)
+		defer cancel()
+
+		if err != nil {
+			log.Panic("there was an error retrieving the event")
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			return
+		}
+		c.IndentedJSON(http.StatusOK, event)
+	}
+}
+
 func CreateEvent() gin.HandlerFunc {
 	return func(c *gin.Context) {
 
