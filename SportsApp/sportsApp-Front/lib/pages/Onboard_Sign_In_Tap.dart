@@ -3,8 +3,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sports_app/services/EventsService.dart';
+import 'package:sports_app/services/UsersService.dart';
 import 'package:sports_app/services/LocalStorage.dart';
+
+import '../services/UsersService.dart';
 
 class Onboard_Sign_In_Tap extends StatefulWidget {
   const Onboard_Sign_In_Tap({super.key});
@@ -69,7 +71,7 @@ class _Onboard_Sign_In_TapState extends State<Onboard_Sign_In_Tap> {
                   child: ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        EventService.userLogin(emailController.text, passwordController.text).then((response) {
+                        UserService.userLogin(emailController.text, passwordController.text).then((response) {
                           Map<String, dynamic> jsonData = jsonDecode(response.body);
                           //LocalStorage.prefs.setString("token", jsonData["token"]);
                           Navigator.pushNamed(context, '/');

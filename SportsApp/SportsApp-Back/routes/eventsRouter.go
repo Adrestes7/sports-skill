@@ -12,4 +12,5 @@ func EventRoutes(incomingRoutes *gin.Engine) {
 	incomingRoutes.GET("/events", controller.GetEvents())
 	incomingRoutes.POST("/event", controller.CreateEvent())
 	incomingRoutes.GET("/event/:event_id", controller.GetEventInfo())
+	incomingRoutes.POST("event/user", controller.SubscribeToEvent())
 }

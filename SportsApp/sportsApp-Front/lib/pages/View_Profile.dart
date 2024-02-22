@@ -20,7 +20,7 @@ class Profile_State extends State<ViewProfilePage> {
     //String? serializedToken = LocalStorage.prefs.getString("token");
     //Map<String, dynamic> jwtDecodedToken = JwtDecoder.decode(serializedToken!);
     //String id = jwtDecodedToken["Uid"];
-    _profile = UserService.getProfileData('1');
+    _profile = UserService.getProfileData("721b4207-3045-4b14-9284-00b2efbd5c7f");
   }
 
   @override
