@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:sports_app/widgets/Providers.dart';
 import 'package:sports_app/entities/Event.dart';
 import 'package:sports_app/entities/Categorietypes.dart';
-import '../services/BackEndService.dart';
+import '../services/EventsService.dart';
 
 class SelectEventCategory extends StatefulWidget {
   const SelectEventCategory({Key? key}) : super(key: key);
@@ -120,7 +120,7 @@ class _SelectEventCategoryState extends State<SelectEventCategory> {
                         children: [
                           Text(
                             categories[index].icon,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 50.0,
                               color: Colors.black,
                             ),
@@ -128,7 +128,7 @@ class _SelectEventCategoryState extends State<SelectEventCategory> {
                           SizedBox(height: 8.0),
                           Text(
                             categories[index].name,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 16.0,
                               fontWeight: FontWeight.bold,
                             ),
@@ -145,7 +145,7 @@ class _SelectEventCategoryState extends State<SelectEventCategory> {
       ),
       bottomNavigationBar: Container(
         color: Colors.black,
-        padding: EdgeInsets.symmetric(horizontal: 16.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
@@ -159,10 +159,10 @@ class _SelectEventCategoryState extends State<SelectEventCategory> {
                 backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
                 padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                  EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+                  const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
                 ),
               ),
-              child: Text(
+              child: const Text(
                 'Next',
                 style: TextStyle(
                   color: Colors.white,

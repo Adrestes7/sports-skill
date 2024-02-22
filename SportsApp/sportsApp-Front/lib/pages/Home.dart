@@ -1,10 +1,9 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:sports_app/pages/Created_Event_Info.dart';
-import 'package:sports_app/services/BackEndService.dart';
+import 'package:sports_app/services/EventsService.dart';
 import 'package:sports_app/entities/Event.dart';
 import 'package:sports_app/widgets/CategoryTypeList.dart';
-import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'dart:async';
 
 class Home extends StatefulWidget {
@@ -46,7 +45,7 @@ class _HomeState extends State<Home> {
           ),
           child: Stack(
             children: [
-              Positioned(
+              const Positioned(
                 bottom: 0.0,
                 left: 0.0,
                 right: 0.0,
@@ -154,7 +153,7 @@ class _HomeState extends State<Home> {
                               )
                           );
                         },
-                      ) as Route<Object?>,
+                      ),
                     );
                   },
                   child: Column(
