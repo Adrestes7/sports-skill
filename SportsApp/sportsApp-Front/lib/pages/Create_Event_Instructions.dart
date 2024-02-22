@@ -80,7 +80,7 @@ class _CreateEventState extends State<CreateEvent> {
                           ),
                           padding: EdgeInsets.symmetric(vertical: 20, horizontal: 100),
                         ),
-                        child: Text(
+                        child: const Text(
                           'Get Started',
                           style: TextStyle(
                             fontSize: 14,

@@ -26,9 +26,8 @@ class EventService {
   static Future<List<Category>> getCategoryData() async{
     List<Category> categories =[];
     Response response = await get(Uri.http("10.0.2.2:5000", "/category"));
-    Map data = jsonDecode(response.body);
-    List<dynamic> jsonCategories = data["categories"];
-    for (var category in jsonCategories) {
+    List<dynamic> data = jsonDecode(response.body);
+    for (var category in data) {
       categories.add(Category.fromJson(category));
     }
     return categories;
